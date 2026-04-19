@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta id="meta-desc" name="description" content="">
+<meta property="og:title" content="LaserRx — IA para Láser Dental">
+<meta id="og-desc" property="og:description" content="">
+<meta property="og:url" content="https://laserapp.ai">
+<meta property="og:type" content="website">
+<title>LaserRx — IA para Láser Dental</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cr:#EDEAE3;
+  --nv:#1B2B3A;
+  --wh:#FFFFFF;
+  --sg:#E5EEE7;
+  --gn:#4A7C5F;
+  --gl:#6B9E80;
+  --tx:#1B2B3A;
+  --mu:#8C8C8C;
+  --br:#D8D4CC;
+}
+body{font-family:system-ui,-apple-system,'Noto Sans KR','Noto Sans JP',sans-serif;background:var(--cr);color:var(--tx);min-height:100vh}
+a{text-decoration:none}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px 60px}
+.mono{font-family:'SF Mono','Fira Code',monospace;font-size:11px;letter-spacing:1.2px;text-transform:uppercase}
+nav{position:sticky;top:0;z-index:100;background:rgba(237,234,227,.93);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:0.5px solid var(--br);padding:12px 20px}
+.nav-in{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-icon{width:34px;height:34px;background:var(--nv);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-icon svg{width:15px;height:15px;stroke:#fff;fill:none;stroke-width:2}
+.logo-name{font-size:15px;font-weight:500;color:var(--tx)}
+.lang-sw{display:flex;gap:3px;background:var(--wh);border:0.5px solid var(--br);border-radius:8px;padding:3px}
+.lb{padding:5px 10px;border:none;background:transparent;border-radius:5px;font-size:11px;font-weight:500;cursor:pointer;color:var(--mu);transition:all .15s;font-family:inherit}
+.lb.on{background:var(--nv);color:#fff}
+.dv{border:none;border-top:0.5px solid var(--br);margin:0}
+.sec{padding:2.5rem 0}
+.sec-eye{color:var(--gn);margin-bottom:8px}
+.sec-h{font-size:22px;font-weight:500;margin-bottom:6px;line-height:1.3}
+.sec-sub{font-size:14px;color:var(--mu);line-height:1.7;margin-bottom:1.75rem}
+.hero{background:var(--nv);border-radius:16px;padding:3.5rem 3rem;position:relative;overflow:hidden;margin-top:1.5rem}
+.hgrid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:40px 40px;pointer-events:none}
+.hbadge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.15);border-radius:20px;padding:5px 14px;margin-bottom:20px;position:relative}
+.hdot{width:7px;height:7px;border-radius:50%;background:var(--gl);flex-shrink:0}
+.hbadge span{color:rgba(255,255,255,.65);font-size:11px;letter-spacing:.6px}
+.hero h1{font-size:32px;font-weight:500;color:#fff;line-height:1.22;margin-bottom:14px;max-width:500px;position:relative}
+.hero h1 em{font-style:normal;color:#A8C4B0}
+.hero-p{font-size:15px;color:rgba(255,255,255,.58);max-width:480px;line-height:1.72;margin-bottom:28px;position:relative}
+.hbtns{display:flex;gap:10px;flex-wrap:wrap;position:relative}
+.bp{background:var(--wh);color:var(--nv);border:none;border-radius:8px;padding:12px 24px;font-size:14px;font-weight:500;cursor:pointer;display:inline-block}
+.bs{background:transparent;color:rgba(255,255,255,.78);border:0.5px solid rgba(255,255,255,.24);border-radius:8px;padding:12px 24px;font-size:14px;cursor:pointer;display:inline-block}
+.hstats{display:flex;gap:2.5rem;margin-top:2.5rem;padding-top:2rem;border-top:0.5px solid rgba(255,255,255,.1);position:relative;flex-wrap:wrap}
+.hstat .num{font-size:22px;font-weight:500;color:#fff}
+.hstat .lbl{font-size:11px;color:rgba(255,255,255,.38);margin-top:2px}
+.fgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.fc{background:var(--wh);border:0.5px solid var(--br);border-radius:14px;padding:1.5rem;display:flex;gap:1rem}
+.fi{width:40px;height:40px;border-radius:10px;background:var(--sg);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.fi svg{width:18px;height:18px;stroke:var(--gn);fill:none;stroke-width:2}
+.fc h3{font-size:14px;font-weight:500;margin-bottom:5px}
+.fc p{font-size:13px;color:var(--mu);line-height:1.55}
+.cwrap{background:var(--wh);border:0.5px solid var(--br);border-radius:14px;overflow:hidden}
+.ctop{background:var(--nv);padding:14px 18px;display:flex;align-items:center;gap:10px}
+.ctico{width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ctico svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:2}
+.ctname{font-size:14px;font-weight:500;color:#fff}
+.ctstatus{font-size:11px;color:var(--gl);display:flex;align-items:center;gap:5px;margin-top:2px}
+.sdot{width:6px;height:6px;border-radius:50%;background:var(--gl)}
+.ctpills{display:flex;gap:6px;margin-left:auto}
+.ctpill{background:rgba(255,255,255,.08);color:rgba(255,255,255,.48);font-size:11px;padding:3px 10px;border-radius:20px}
+.cbody{padding:1.25rem;background:var(--cr)}
+.msg{margin-bottom:10px}
+.msg.u{text-align:right}
+.bbl{display:inline-block;padding:10px 15px;border-radius:12px;font-size:13px;line-height:1.55;max-width:78%;text-align:left}
+.bbl.ai{background:var(--wh);border:0.5px solid var(--br);color:var(--tx)}
+.bbl.u{background:var(--nv);color:rgba(255,255,255,.88)}
+.ptag{display:inline-block;background:var(--sg);color:var(--gn);font-size:11px;padding:2px 8px;border-radius:4px;margin-bottom:6px}
+.uphint{font-size:11px;color:var(--gn);margin-top:6px;display:block}
+.cfoot{padding:12px 14px;background:var(--wh);display:flex;gap:8px;border-top:0.5px solid var(--br)}
+.cinmock{flex:1;background:var(--cr);border:0.5px solid var(--br);border-radius:8px;padding:9px 14px;font-size:13px;color:var(--mu)}
+.csendbtn{background:var(--nv);color:#fff;border:none;border-radius:8px;padding:9px 18px;font-size:13px;cursor:pointer;font-family:inherit}
+.pgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.plan{background:var(--wh);border:0.5px solid var(--br);border-radius:14px;padding:1.5rem}
+.plan.ft{background:var(--nv);border-color:var(--nv)}
+.peye{font-size:11px;letter-spacing:.7px;text-transform:uppercase;color:var(--mu);margin-bottom:10px}
+.plan.ft .peye{color:rgba(255,255,255,.38)}
+.pbadge{display:inline-block;background:rgba(168,196,176,.2);color:#A8C4B0;font-size:11px;padding:3px 10px;border-radius:20px;margin-left:6px;vertical-align:middle}
+.pname{font-size:18px;font-weight:500}
+.plan.ft .pname{color:#fff}
+.pprice{font-size:28px;font-weight:500;margin:8px 0 4px}
+.plan.ft .pprice{color:#fff}
+.pprice sub{font-size:13px;font-weight:400;color:var(--mu);vertical-align:baseline}
+.plan.ft .pprice sub{color:rgba(255,255,255,.38)}
+.pdesc{font-size:12px;color:var(--mu);margin-bottom:1.25rem;line-height:1.55}
+.plan.ft .pdesc{color:rgba(255,255,255,.44)}
+.psep{border:none;border-top:0.5px solid var(--br);margin:10px 0}
+.plan.ft .psep{border-color:rgba(255,255,255,.12)}
+.prow{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:12px;color:var(--tx)}
+.plan.ft .prow{color:rgba(255,255,255,.78)}
+.prow.off{color:var(--mu)}
+.plan.ft .prow.off{color:rgba(255,255,255,.28)}
+.ck{width:14px;height:14px;stroke:var(--gn);fill:none;stroke-width:2.5;flex-shrink:0}
+.plan.ft .ck{stroke:#A8C4B0}
+.xx{width:14px;height:14px;stroke:var(--br);fill:none;stroke-width:2.5;flex-shrink:0}
+.pbtn{width:100%;margin-top:1.25rem;padding:11px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;text-align:center;display:block;font-family:inherit}
+.pbtn.out{background:transparent;border:0.5px solid var(--br);color:var(--tx)}
+.pbtn.sol{background:var(--wh);color:var(--nv);border:none}
+.tgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.tc{background:var(--wh);border:0.5px solid var(--br);border-radius:14px;padding:1.25rem}
+.stars{color:#BA7517;font-size:12px;margin-bottom:10px;letter-spacing:2px}
+.tc p{font-size:13px;color:var(--mu);line-height:1.65;margin-bottom:14px}
+.tauth{display:flex;align-items:center;gap:10px}
+.av{width:34px;height:34px;border-radius:50%;background:var(--sg);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;color:var(--gn);flex-shrink:0}
+.aname{font-size:13px;font-weight:500}
+.arole{font-size:11px;color:var(--mu)}
+.cta{background:var(--nv);border-radius:16px;padding:3rem;text-align:center;position:relative;overflow:hidden}
+.ctagrid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:32px 32px;pointer-events:none}
+.cta h2{font-size:22px;font-weight:500;color:#fff;margin-bottom:10px;position:relative}
+.ctap{font-size:14px;color:rgba(255,255,255,.48);margin-bottom:1.75rem;line-height:1.7;position:relative}
+.erow{display:flex;gap:8px;max-width:400px;margin:0 auto;position:relative}
+.ein{flex:1;background:rgba(255,255,255,.08);border:0.5px solid rgba(255,255,255,.18);border-radius:8px;padding:11px 16px;font-size:13px;color:rgba(255,255,255,.7);font-family:inherit}
+.ein::placeholder{color:rgba(255,255,255,.32)}
+.ebtn{background:var(--wh);color:var(--nv);border:none;border-radius:8px;padding:11px 22px;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap;font-family:inherit}
+.ctanote{font-size:11px;color:rgba(255,255,255,.28);margin-top:12px;position:relative}
+footer{text-align:center;padding:2rem 0 0.5rem;font-size:12px;color:var(--mu)}
+@media(max-width:680px){
+  .hero{padding:2.5rem 1.5rem}
+  .hero h1{font-size:26px}
+  .fgrid,.pgrid,.tgrid{grid-template-columns:1fr}
+  .hstats{gap:1.5rem}
+  .wrap{padding:0 16px 40px}
+  .nav-in{flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-in">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9 16 14 18 21 12 17 6 21 8 14 2 9 9 9"/></svg>
+      </div>
+      <span class="logo-name">LaserRx</span>
+    </div>
+    <div class="lang-sw">
+      <button class="lb on" data-l="es" onclick="setL('es')">ES</button>
+      <button class="lb" data-l="en" onclick="setL('en')">EN</button>
+      <button class="lb" data-l="ko" onclick="setL('ko')">KO</button>
+      <button class="lb" data-l="ja" onclick="setL('ja')">JA</button>
+      <button class="lb" data-l="pt" onclick="setL('pt')">PT</button>
+    </div>
+  </div>
+</nav>
+<div class="wrap">
+  <div id="app"></div>
+  <footer id="ft"></footer>
+</div>
+<script>
+var PRO   = 'https://buy.stripe.com/dRm3cngZNdvk6DU1IHdIA0D';
+var ELITE = 'https://buy.stripe.com/bJe9ALbFt3UK2nEfzxdIA0E';
+var CHAT  = 'https://laserapp.ai';
+
+var FI = [
+  '<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M16.9 16.9l2.1 2.1M4.9 19.1l2.1-2.1M16.9 7.1l2.1-2.1"/>',
+  '<rect x="2" y="6" width="20" height="12" rx="2"/><path d="M8 6V4M16 6V4"/>',
+  '<path d="M3 17l4-8 4 4 4-6 4 6"/><path d="M3 21h18"/>',
+  '<path d="M9 12h6M9 16h4"/><rect x="3" y="3" width="18" height="18" rx="2"/>'
+];
+
+var T = {
+es:{
+  meta:'Protocolos de láser dental con IA. Instantáneos, precisos y basados en evidencia.',
+  badge:'IA Clínica · Láser Dental',
+  h1:['Protocolos láser.','Instantáneos. Precisos.','Basados en evidencia.'],
+  hp:'LaserRx da a los profesionales dentales acceso con IA a protocolos de láser y FBP — por dispositivo, longitud de onda e indicación. En la silla, en segundos.',
+  b1:'Prueba gratis — 1 consulta',b2:'Ver precios →',
+  stats:[['4','Longitudes de onda'],['20+','Marcas de dispositivos'],['100%','Evidencia citada'],['<5s','Respuesta de protocolo']],
+  fe:'Lo que incluye',fh:'Diseñado para la clínica con láser',fs:'Cada módulo pensado para la silla — sin IA genérica.',
+  feats:[
+    ['Consulta de protocolos IA','Describe el caso en lenguaje natural — obtén un protocolo clínico estructurado con ajustes, selección de punta y técnica en segundos.'],
+    ['Biblioteca de dispositivos','Cubre diodo, Nd:YAG, Er:YAG y Er,Cr:YSGG — buscable por marca, modelo y longitud de onda con especificaciones verificadas.'],
+    ['Calculadora de dosimetría','Densidad de energía FBP calculada para tu dispositivo, tamaño de spot e indicación específica — sin hojas de cálculo.'],
+    ['Referencias con evidencia','Cada protocolo referencia literatura clínica publicada — presenta hallazgos a pacientes o colegas con total confianza.']
+  ],
+  de:'Demo en vivo',dh:'Prueba una consulta ahora',ds:'Plan gratuito — una consulta completa, sin cuenta requerida.',
+  ca1:'Hola. Pregúntame sobre cualquier protocolo de láser dental, dosificación FBP o parámetros de dispositivo.',
+  cu:'Diodo 980 nm — desbridamiento sulcular, ¿parámetros?',
+  ctag:'980 nm diodo · Desbridamiento sulcular',
+  ca2:'Potencia: 0.5 – 1.0 W · Modo: CW o pulso\nFibra: 300 – 400 µm · Técnica: contacto ligero\nPases: 2–3 por bolsa · Irrigación: suero fisiológico',
+  cup:'↗ Protocolo completo + referencias disponibles en Pro',
+  cph:'Escribe tu pregunta…',csend:'Enviar',
+  pe:'Precios',ph:'Planes simples y transparentes',ps:'Empieza gratis. Actualiza cuando necesites más.',
+  plans:[
+    {eye:'Plan gratuito',name:'Gratis',price:'$0',sub:'/mes',desc:'Una consulta completa para experimentar LaserRx — sin tarjeta de crédito.',on:['1 consulta IA','Vista previa de dispositivos'],off:['Calculadora de dosimetría','Referencias con evidencia'],btn:'Empezar gratis',href:CHAT,sol:false,ft:false},
+    {eye:'Más popular',name:'Pro',price:'$9.99',sub:'/mes',desc:'100 consultas al mes — suficiente para cualquier práctica activa con láser.',on:['100 consultas/mes','Biblioteca completa de dispositivos','Calculadora de dosimetría','Referencias con evidencia'],off:[],btn:'Suscribirse — $9.99/mes',href:PRO,sol:true,ft:true},
+    {eye:'Acceso completo',name:'Elite',price:'$29.99',sub:'/mes',desc:'Consultas ilimitadas + soporte prioritario para clínicas de alto volumen.',on:['Consultas ilimitadas','Todo lo de Pro','Acceso anticipado a funciones','Canal de soporte directo'],off:[],btn:'Suscribirse — $29.99/mes',href:ELITE,sol:false,ft:false}
+  ],
+  te:'Testimonios',th:'Confiado por profesionales dentales',
+  testis:[
+    ['Solía tardar 10 minutos buscando ajustes de Er:YAG. Con LaserRx lo tengo en 30 segundos.','Dra. M. Ramírez','Periodoncista · CDMX','MR'],
+    ['La calculadora de dosimetría FBP sola vale el plan Pro. Me ahorra los cálculos en cada sesión.','Dr. S. Leal','Cirujano oral · Monterrey','SL'],
+    ['Por fin una IA que habla de láser dental. Precisa, citada y rápida — la confío clínicamente.','Dr. C. Guerrero','Especialista en láser · GDL','CG']
+  ],
+  cth:'¿Listo para llevar la IA a tu práctica con láser?',
+  ctp:'Únete a los profesionales dentales que ya usan LaserRx a diario.\nUna consulta gratis — sin registro, sin tarjeta.',
+  ctin:'tu@email.com',ctbtn:'Empezar gratis',ctnote:'Sin tarjeta de crédito · Cancela cuando quieras',
+  foot:'© 2026 LaserRx · IA para Láser Dental'
+},
+en:{
+  meta:'Dental laser protocols powered by AI. Instant, precise, evidence-based.',
+  badge:'Clinical AI · Dental Laser',
+  h1:['Laser protocols.','Instant. Precise.','Evidence-based.'],
+  hp:'LaserRx gives dental professionals AI-powered access to laser and PBM protocols — by device, wavelength, and indication. At the chair, in seconds.',
+  b1:'Try free — 1 consultation',b2:'View pricing →',
+  stats:[['4','Laser wavelengths'],['20+','Device brands'],['100%','Evidence-cited'],['<5s','Protocol response']],
+  fe:'What you get',fh:'Built for the laser-equipped clinic',fs:'Every module designed around real chairside needs — no generic AI fluff.',
+  feats:[
+    ['AI protocol lookup','Describe the case in plain language — get a structured clinical protocol with settings, tip selection, and technique in seconds.'],
+    ['Device library','Covers diode, Nd:YAG, Er:YAG, and Er,Cr:YSGG — searchable by brand, model, and wavelength with verified specs.'],
+    ['Dosimetry calculator','PBM energy density calculated for your specific device, spot size, and indication — no spreadsheet needed.'],
+    ['Evidence-based citations','Every protocol references published clinical literature — present findings to patients or colleagues with confidence.']
+  ],
+  de:'Live demo',dh:'Try a consultation right now',ds:'Free tier — one full consultation, no account required.',
+  ca1:'Hello. Ask me about any dental laser protocol, PBM dosing, or device parameters.',
+  cu:'980 nm diode — sulcular debridement, parameters?',
+  ctag:'980 nm diode · Sulcular debridement',
+  ca2:'Power: 0.5 – 1.0 W · Mode: CW or gated pulse\nFiber: 300 – 400 µm · Technique: light contact\nPasses: 2–3 per pocket · Irrigation: sterile saline',
+  cup:'↗ Full protocol + citations available on Pro',
+  cph:'Write your question…',csend:'Send',
+  pe:'Pricing',ph:'Simple, transparent plans',ps:'Start free. Upgrade when you need more.',
+  plans:[
+    {eye:'Free tier',name:'Free',price:'$0',sub:'/mo',desc:'One full consultation to experience LaserRx — no credit card needed.',on:['1 AI consultation','Device library preview'],off:['Dosimetry calculator','Evidence citations'],btn:'Get started free',href:CHAT,sol:false,ft:false},
+    {eye:'Most popular',name:'Pro',price:'$9.99',sub:'/mo',desc:'100 consultations per month — enough for any active laser practice.',on:['100 consultations/month','Full device library','Dosimetry calculator','Evidence citations'],off:[],btn:'Subscribe — $9.99/mo',href:PRO,sol:true,ft:true},
+    {eye:'Full access',name:'Elite',price:'$29.99',sub:'/mo',desc:'Unlimited consultations + priority support for high-volume clinics.',on:['Unlimited consultations','Everything in Pro','Early feature access','Direct support channel'],off:[],btn:'Subscribe — $29.99/mo',href:ELITE,sol:false,ft:false}
+  ],
+  te:'Testimonials',th:'Trusted by dental professionals',
+  testis:[
+    ['I used to spend 10 minutes looking up Er:YAG settings. With LaserRx I\'m confident in 30 seconds.','Dr. M. Ramírez','Periodontist · CDMX','MR'],
+    ['The PBM dosimetry calculator alone is worth the Pro plan. Saves the mental math on every biostimulation session.','Dr. S. Leal','Oral surgeon · Monterrey','SL'],
+    ['Finally an AI that speaks laser dentistry. Accurate, cited, and fast — I trust it clinically.','Dr. C. Guerrero','Laser specialist · GDL','CG']
+  ],
+  cth:'Ready to bring AI to your laser practice?',
+  ctp:'Join dental professionals already using LaserRx daily.\nOne free consultation — no sign-up, no credit card.',
+  ctin:'your@email.com',ctbtn:'Get started free',ctnote:'No credit card required · Cancel anytime',
+  foot:'© 2026 LaserRx · Clinical AI for Dental Laser'
+},
+ko:{
+  meta:'AI 기반 치과 레이저 프로토콜. 즉각적이고 정확한 근거 중심 임상 가이드.',
+  badge:'임상 AI · 치과 레이저',
+  h1:['레이저 프로토콜.','즉각적. 정확하게.','근거 중심으로.'],
+  hp:'LaserRx는 치과 전문가에게 AI 기반 레이저 및 PBM 프로토콜을 제공합니다 — 기기, 파장, 적응증별로. 수초 내에.',
+  b1:'무료 체험 — 1회 상담',b2:'요금제 보기 →',
+  stats:[['4','레이저 파장'],['20+','기기 브랜드'],['100%','근거 인용'],['<5초','프로토콜 응답']],
+  fe:'주요 기능',fh:'레이저 치과를 위해 설계된 도구',fs:'모든 모듈이 실제 진료 현장을 위해 설계되었습니다.',
+  feats:[
+    ['AI 프로토콜 조회','일반 언어로 케이스를 설명하면 — 설정, 팁 선택, 기법이 포함된 구조화된 임상 프로토콜을 수초 내에 받아볼 수 있습니다.'],
+    ['기기 라이브러리','다이오드, Nd:YAG, Er:YAG, Er,Cr:YSGG 커버 — 브랜드, 모델, 파장별로 검색 가능한 검증된 사양 제공.'],
+    ['선량 계산기','특정 기기, 스팟 크기, 적응증에 맞게 계산된 PBM 에너지 밀도 — 스프레드시트 불필요.'],
+    ['근거 기반 인용','모든 프로토콜은 출판된 임상 문헌을 참조합니다 — 환자나 동료에게 자신 있게 제시하세요.']
+  ],
+  de:'라이브 데모',dh:'지금 바로 상담을 체험하세요',ds:'무료 플랜 — 계정 없이 한 번의 전체 상담 가능.',
+  ca1:'안녕하세요. 치과 레이저 프로토콜, PBM 용량 또는 기기 파라미터에 대해 질문하세요.',
+  cu:'980nm 다이오드 — 치은열구 변연 제거술, 파라미터는?',
+  ctag:'980nm 다이오드 · 치은열구 변연 제거',
+  ca2:'출력: 0.5 – 1.0 W · 모드: CW 또는 게이트 펄스\n파이버: 300 – 400 µm · 기법: 가벼운 접촉\n패스: 포켓당 2–3회 · 관개: 멸균 생리식염수',
+  cup:'↗ 전체 프로토콜 + 인용문은 Pro에서 이용 가능',
+  cph:'질문을 입력하세요…',csend:'전송',
+  pe:'요금제',ph:'간단하고 투명한 플랜',ps:'무료로 시작하세요. 필요할 때 업그레이드하세요.',
+  plans:[
+    {eye:'무료',name:'무료',price:'$0',sub:'/월',desc:'LaserRx를 경험할 수 있는 한 번의 전체 상담 — 신용카드 불필요.',on:['1회 AI 상담','기기 라이브러리 미리보기'],off:['선량 계산기','근거 인용'],btn:'무료로 시작',href:CHAT,sol:false,ft:false},
+    {eye:'가장 인기 있는',name:'Pro',price:'$9.99',sub:'/월',desc:'월 100회 상담 — 활발한 레이저 진료에 충분한 양입니다.',on:['월 100회 상담','전체 기기 라이브러리','선량 계산기','근거 인용'],off:[],btn:'구독 — $9.99/월',href:PRO,sol:true,ft:true},
+    {eye:'전체 이용',name:'Elite',price:'$29.99',sub:'/월',desc:'무제한 상담 + 고용량 클리닉을 위한 우선 지원.',on:['무제한 상담','Pro의 모든 기능','얼리 액세스','전용 지원 채널'],off:[],btn:'구독 — $29.99/월',href:ELITE,sol:false,ft:false}
+  ],
+  te:'사용 후기',th:'치과 전문가들의 신뢰',
+  testis:[
+    ['Er:YAG 설정을 찾는 데 10분씩 걸렸는데, LaserRx로 30초 안에 확인할 수 있게 되었습니다.','라미레스 원장','치주과 전문의 · CDMX','MR'],
+    ['PBM 선량 계산기 하나만으로도 Pro 플랜 값어치를 합니다. 매 세션마다 계산 수고가 없어졌습니다.','레알 원장','구강외과 · 몬테레이','SL'],
+    ['레이저 치과를 이해하는 AI를 드디어 찾았습니다. 정확하고 인용이 있으며 빠릅니다.','게레로 원장','레이저 전문의 · GDL','CG']
+  ],
+  cth:'AI를 레이저 진료에 도입할 준비가 되셨나요?',
+  ctp:'이미 LaserRx를 매일 사용하는 치과 전문가들과 함께하세요.\n무료 상담 1회 — 가입 불필요, 신용카드 불필요.',
+  ctin:'이메일 주소',ctbtn:'무료로 시작',ctnote:'신용카드 불필요 · 언제든지 해지 가능',
+  foot:'© 2026 LaserRx · 치과 레이저를 위한 임상 AI'
+},
+ja:{
+  meta:'AIを活用した歯科レーザープロトコル。即座で正確、エビデンスに基づいた臨床ガイド。',
+  badge:'臨床AI · 歯科レーザー',
+  h1:['レーザープロトコル。','即座に。正確に。','エビデンスに基づいて。'],
+  hp:'LaserRxは歯科専門家にAIを活用したレーザー・PBMプロトコルへのアクセスを提供します — デバイス、波長、適応症別に。チェアサイドで、数秒で。',
+  b1:'無料体験 — 1回コンサルト',b2:'料金を見る →',
+  stats:[['4','レーザー波長'],['20+','デバイスブランド'],['100%','エビデンス引用'],['<5秒','プロトコル応答']],
+  fe:'主な機能',fh:'レーザー歯科のために構築されたツール',fs:'すべてのモジュールは実際のチェアサイドニーズのために設計されています。',
+  feats:[
+    ['AIプロトコル検索','平易な言葉でケースを説明すると — 設定、チップ選択、テクニックを含む構造化された臨床プロトコルが数秒で得られます。'],
+    ['デバイスライブラリ','ダイオード、Nd:YAG、Er:YAG、Er,Cr:YSGGをカバー — ブランド、モデル、波長で検索可能な検証済みスペック付き。'],
+    ['線量計算機','特定のデバイス、スポットサイズ、適応症に合わせたPBMエネルギー密度を計算 — スプレッドシート不要。'],
+    ['エビデンスベースの引用','すべてのプロトコルは発表された臨床文献を参照 — 患者や同僚に自信を持って提示できます。']
+  ],
+  de:'ライブデモ',dh:'今すぐコンサルトを体験',ds:'無料プラン — アカウント不要で1回の完全なコンサルトが可能。',
+  ca1:'こんにちは。歯科レーザープロトコル、PBM投与量、またはデバイスパラメータについて質問してください。',
+  cu:'980nmダイオード — 歯肉溝デブライドメント、パラメータは？',
+  ctag:'980nmダイオード · 歯肉溝デブライドメント',
+  ca2:'出力: 0.5 – 1.0 W · モード: CWまたはゲートパルス\nファイバー: 300 – 400 µm · テクニック: 軽接触\nパス: ポケットあたり2–3回 · 灌注: 滅菌生理食塩水',
+  cup:'↗ 完全なプロトコル + 引用はProで利用可能',
+  cph:'質問を入力してください…',csend:'送信',
+  pe:'料金プラン',ph:'シンプルで透明な料金体系',ps:'無料で始めて、必要に応じてアップグレード。',
+  plans:[
+    {eye:'無料プラン',name:'無料',price:'$0',sub:'/月',desc:'LaserRxを体験できる1回のフルコンサルト — クレジットカード不要。',on:['1回のAIコンサルト','デバイスライブラリプレビュー'],off:['線量計算機','エビデンス引用'],btn:'無料で始める',href:CHAT,sol:false,ft:false},
+    {eye:'最も人気',name:'Pro',price:'$9.99',sub:'/月',desc:'月100回のコンサルト — 積極的なレーザー診療に十分な量。',on:['月100回のコンサルト','完全なデバイスライブラリ','線量計算機','エビデンス引用'],off:[],btn:'登録 — $9.99/月',href:PRO,sol:true,ft:true},
+    {eye:'フルアクセス',name:'Elite',price:'$29.99',sub:'/月',desc:'無制限のコンサルト + 大容量クリニック向け優先サポート。',on:['無制限のコンサルト','Proのすべての機能','早期機能アクセス','専用サポートチャンネル'],off:[],btn:'登録 — $29.99/月',href:ELITE,sol:false,ft:false}
+  ],
+  te:'ユーザーの声',th:'歯科専門家からの信頼',
+  testis:[
+    ['Er:YAGの設定を調べるのに10分かかっていました。LaserRxなら30秒で確信が持てます。','ラミレス先生','歯周専門医 · CDMX','MR'],
+    ['PBM線量計算機だけでもProプランの価値があります。毎セッションで計算の手間が省けます。','レアル先生','口腔外科医 · モンテレー','SL'],
+    ['ついにレーザー歯科を理解するAIが登場しました。正確で引用付き、速い — 臨床で信頼できます。','ゲレロ先生','レーザー専門医 · GDL','CG']
+  ],
+  cth:'AIをレーザー診療に取り入れる準備はできていますか？',
+  ctp:'LaserRxを毎日活用している歯科専門家に加わりましょう。\n無料コンサルト1回 — 登録不要、クレジットカード不要。',
+  ctin:'メールアドレス',ctbtn:'無料で始める',ctnote:'クレジットカード不要 · いつでもキャンセル可能',
+  foot:'© 2026 LaserRx · 歯科レーザーのための臨床AI'
+},
+pt:{
+  meta:'Protocolos de laser dental com IA. Instantâneos, precisos e baseados em evidências.',
+  badge:'IA Clínica · Laser Dental',
+  h1:['Protocolos laser.','Instantâneos. Precisos.','Baseados em evidências.'],
+  hp:'LaserRx oferece aos profissionais dentários acesso com IA a protocolos de laser e FBP — por dispositivo, comprimento de onda e indicação. Na cadeira, em segundos.',
+  b1:'Experimente grátis — 1 consulta',b2:'Ver planos →',
+  stats:[['4','Comprimentos de onda'],['20+','Marcas de dispositivos'],['100%','Evidência citada'],['<5s','Resposta de protocolo']],
+  fe:'O que você ganha',fh:'Criado para clínicas com laser',fs:'Cada módulo pensado para as necessidades reais da cadeira odontológica.',
+  feats:[
+    ['Consulta de protocolos IA','Descreva o caso em linguagem natural — obtenha um protocolo clínico estruturado com ajustes, seleção de ponta e técnica em segundos.'],
+    ['Biblioteca de dispositivos','Cobre diodo, Nd:YAG, Er:YAG e Er,Cr:YSGG — pesquisável por marca, modelo e comprimento de onda com especificações verificadas.'],
+    ['Calculadora de dosimetria','Densidade de energia FBP calculada para seu dispositivo, tamanho do spot e indicação específicos — sem planilhas.'],
+    ['Referências com evidências','Cada protocolo referencia literatura clínica publicada — apresente resultados a pacientes ou colegas com confiança.']
+  ],
+  de:'Demo ao vivo',dh:'Experimente uma consulta agora',ds:'Plano gratuito — uma consulta completa, sem conta necessária.',
+  ca1:'Olá. Pergunte-me sobre qualquer protocolo de laser dental, dosagem FBP ou parâmetros de dispositivo.',
+  cu:'Diodo 980 nm — desbridamento sulcular, parâmetros?',
+  ctag:'980 nm diodo · Desbridamento sulcular',
+  ca2:'Potência: 0,5 – 1,0 W · Modo: CW ou pulso\nFibra: 300 – 400 µm · Técnica: contato leve\nPassagens: 2–3 por bolsa · Irrigação: soro fisiológico',
+  cup:'↗ Protocolo completo + referências disponíveis no Pro',
+  cph:'Escreva sua pergunta…',csend:'Enviar',
+  pe:'Planos',ph:'Planos simples e transparentes',ps:'Comece grátis. Faça upgrade quando precisar de mais.',
+  plans:[
+    {eye:'Plano gratuito',name:'Grátis',price:'$0',sub:'/mês',desc:'Uma consulta completa para experimentar o LaserRx — sem cartão de crédito.',on:['1 consulta com IA','Prévia da biblioteca de dispositivos'],off:['Calculadora de dosimetria','Referências com evidências'],btn:'Começar grátis',href:CHAT,sol:false,ft:false},
+    {eye:'Mais popular',name:'Pro',price:'$9.99',sub:'/mês',desc:'100 consultas por mês — suficiente para qualquer prática ativa com laser.',on:['100 consultas/mês','Biblioteca completa de dispositivos','Calculadora de dosimetria','Referências com evidências'],off:[],btn:'Assinar — $9.99/mês',href:PRO,sol:true,ft:true},
+    {eye:'Acesso completo',name:'Elite',price:'$29.99',sub:'/mês',desc:'Consultas ilimitadas + suporte prioritário para clínicas de alto volume.',on:['Consultas ilimitadas','Tudo do Pro','Acesso antecipado a funcionalidades','Canal de suporte direto'],off:[],btn:'Assinar — $29.99/mês',href:ELITE,sol:false,ft:false}
+  ],
+  te:'Depoimentos',th:'Confiado por profissionais dentários',
+  testis:[
+    ['Eu costumava gastar 10 minutos buscando configurações de Er:YAG. Com o LaserRx tenho em 30 segundos.','Dra. M. Ramírez','Periodontista · CDMX','MR'],
+    ['A calculadora de dosimetria FBP por si só vale o plano Pro. Economiza os cálculos em cada sessão.','Dr. S. Leal','Cirurgião oral · Monterrey','SL'],
+    ['Finalmente uma IA que fala de laser dental. Precisa, citada e rápida — confio clinicamente.','Dr. C. Guerrero','Especialista em laser · GDL','CG']
+  ],
+  cth:'Pronto para trazer IA à sua prática com laser?',
+  ctp:'Junte-se aos profissionais dentários que já usam o LaserRx diariamente.\nUma consulta grátis — sem cadastro, sem cartão.',
+  ctin:'seu@email.com',ctbtn:'Começar grátis',ctnote:'Sem cartão de crédito · Cancele a qualquer momento',
+  foot:'© 2026 LaserRx · IA Clínica para Laser Dental'
+}
+};
+
+function ck(){return'<svg class="ck" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>'}
+function xx(){return'<svg class="xx" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'}
+
+function build(t){
+  var feats=t.feats.map(function(f,i){
+    return '<div class="fc"><div class="fi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">'+FI[i]+'</svg></div><div><h3>'+f[0]+'</h3><p>'+f[1]+'</p></div></div>';
+  }).join('');
+  var plans=t.plans.map(function(p){
+    var rows=p.on.map(function(f){return'<div class="prow">'+ck()+'<span>'+f+'</span></div>';}).join('');
+    var offs=p.off.map(function(f){return'<div class="prow off">'+xx()+'<span>'+f+'</span></div>';}).join('');
+    var eyeHTML=p.ft?'<div class="peye"><span class="pbadge">'+p.eye+'</span></div>':'<div class="peye">'+p.eye+'</div>';
+    var ext=p.href.startsWith('http')?' target="_blank"':'';
+    return '<div class="plan'+(p.ft?' ft':'')+'">'+eyeHTML+'<div class="pname">'+p.name+'</div><div class="pprice">'+p.price+'<sub>'+p.sub+'</sub></div><div class="pdesc">'+p.desc+'</div><hr class="psep">'+rows+offs+'<a href="'+p.href+'" class="pbtn '+(p.sol?'sol':'out')+'"'+ext+'>'+p.btn+'</a></div>';
+  }).join('');
+  var testis=t.testis.map(function(x){
+    return '<div class="tc"><div class="stars">★★★★★</div><p>&#8220;'+x[0]+'&#8221;</p><div class="tauth"><div class="av">'+x[3]+'</div><div><div class="aname">'+x[1]+'</div><div class="arole">'+x[2]+'</div></div></div></div>';
+  }).join('');
+  return '<div class="hero" id="top"><div class="hgrid"></div><div class="hbadge"><div class="hdot"></div><span class="mono">'+t.badge+'</span></div><h1>'+t.h1[0]+'<br><em>'+t.h1[1]+'</em><br>'+t.h1[2]+'</h1><p class="hero-p">'+t.hp+'</p><div class="hbtns"><a href="'+CHAT+'" class="bp" target="_blank">'+t.b1+'</a><a href="#pricing" class="bs">'+t.b2+'</a></div><div class="hstats">'+t.stats.map(function(s){return'<div class="hstat"><div class="num">'+s[0]+'</div><div class="lbl">'+s[1]+'</div></div>';}).join('')+'</div></div>'
+  +'<hr class="dv" style="margin-top:2rem">'
+  +'<div class="sec" id="features"><div class="mono sec-eye">'+t.fe+'</div><div class="sec-h">'+t.fh+'</div><div class="sec-sub">'+t.fs+'</div><div class="fgrid">'+feats+'</div></div>'
+  +'<hr class="dv">'
+  +'<div class="sec" id="demo"><div class="mono sec-eye">'+t.de+'</div><div class="sec-h">'+t.dh+'</div><div class="sec-sub">'+t.ds+'</div><div class="cwrap"><div class="ctop"><div class="ctico"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" width="14" height="14"><polygon points="12 2 15 9 22 9 16 14 18 21 12 17 6 21 8 14 2 9 9 9"/></svg></div><div><div class="ctname">LaserRx AI</div><div class="ctstatus"><div class="sdot"></div>ready</div></div><div class="ctpills"><span class="ctpill">Plan: Free</span><span class="ctpill">1 consult</span></div></div><div class="cbody"><div class="msg"><div class="bbl ai">'+t.ca1+'</div></div><div class="msg u"><div class="bbl u">'+t.cu+'</div></div><div class="msg"><div class="bbl ai"><span class="ptag">'+t.ctag+'</span><br>'+t.ca2.replace(/\n/g,'<br>')+'<span class="uphint">'+t.cup+'</span></div></div></div><div class="cfoot"><div class="cinmock">'+t.cph+'</div><button class="csendbtn" onclick="window.open(\''+CHAT+'\',\'_blank\')">'+t.csend+'</button></div></div></div>'
+  +'<hr class="dv">'
+  +'<div class="sec" id="pricing"><div class="mono sec-eye">'+t.pe+'</div><div class="sec-h">'+t.ph+'</div><div class="sec-sub">'+t.ps+'</div><div class="pgrid">'+plans+'</div></div>'
+  +'<hr class="dv">'
+  +'<div class="sec" id="testimonials"><div class="mono sec-eye">'+t.te+'</div><div class="sec-h">'+t.th+'</div><div class="tgrid">'+testis+'</div></div>'
+  +'<hr class="dv">'
+  +'<div class="sec"><div class="cta"><div class="ctagrid"></div><h2>'+t.cth+'</h2><p class="ctap">'+t.ctp.replace(/\n/g,'<br>')+'</p><div class="erow"><input class="ein" type="email" placeholder="'+t.ctin+'"><button class="ebtn" onclick="window.open(\''+CHAT+'\',\'_blank\')">'+t.ctbtn+'</button></div><div class="ctanote">'+t.ctnote+'</div></div></div>';
+}
+
+var lang='es';
+function setL(l){
+  lang=l;
+  document.getElementById('app').innerHTML=build(T[l]);
+  document.getElementById('ft').textContent=T[l].foot;
+  document.getElementById('meta-desc').content=T[l].meta;
+  document.getElementById('og-desc').content=T[l].meta;
+  document.documentElement.lang=l;
+  document.querySelectorAll('.lb').forEach(function(b){b.classList.toggle('on',b.dataset.l===l);});
+}
+setL('es');
+</script>
+</body>
+</html>
