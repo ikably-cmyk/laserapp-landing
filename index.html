@@ -160,9 +160,14 @@ footer{text-align:center;padding:2rem 0 0.5rem;font-size:12px;color:var(--mu)}
   <footer id="ft"></footer>
 </div>
 <script>
-var PRO   = 'https://buy.stripe.com/dRm3cngZNdvk6DU1IHdIA0D';
-var ELITE = 'https://buy.stripe.com/bJe9ALbFt3UK2nEfzxdIA0E';
+var PRO_USD   = 'https://buy.stripe.com/dRm3cngZNdvk6DU1IHdIA0D';
+var ELITE_USD = 'https://buy.stripe.com/bJe9ALbFt3UK2nEfzxdIA0E';
+var PRO_MXN   = 'https://buy.stripe.com/6oU8wH9xl0Iyfaq5YXdIA0G';
+var ELITE_MXN = 'https://buy.stripe.com/28E6oz38Xdvkgeu1IHdIA0H';
 var CHAT  = 'https://app.laserapp.ai';
+var currency = 'usd'; // default Internacional
+function proLink(){ return currency==='mxn'?PRO_MXN:PRO_USD; }
+function eliteLink(){ return currency==='mxn'?ELITE_MXN:ELITE_USD; }
 
 var FI = [
   '<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M16.9 16.9l2.1 2.1M4.9 19.1l2.1-2.1M16.9 7.1l2.1-2.1"/>',
@@ -196,8 +201,8 @@ es:{
   pe:'Precios',ph:'Planes simples y transparentes',ps:'Empieza gratis. Actualiza cuando necesites más.',
   plans:[
     {eye:'Plan gratuito',name:'Gratis',price:'$0',sub:'/mes',desc:'Una consulta completa para experimentar LaserRx — sin tarjeta de crédito.',on:['1 consulta IA','Vista previa de dispositivos'],off:['Calculadora de dosimetría','Referencias con evidencia'],btn:'Empezar gratis',href:CHAT,sol:false,ft:false},
-    {eye:'Más popular',name:'Pro',price:'$9.99',sub:'/mes',desc:'100 consultas al mes — suficiente para cualquier práctica activa con láser.',on:['100 consultas/mes','Biblioteca completa de dispositivos','Calculadora de dosimetría','Referencias con evidencia'],off:[],btn:'Suscribirse — $9.99/mes',href:PRO,sol:true,ft:true},
-    {eye:'Acceso completo',name:'Elite',price:'$29.99',sub:'/mes',desc:'Consultas ilimitadas + soporte prioritario para clínicas de alto volumen.',on:['Consultas ilimitadas','Todo lo de Pro','Acceso anticipado a funciones','Canal de soporte directo'],off:[],btn:'Suscribirse — $29.99/mes',href:ELITE,sol:false,ft:false}
+    {eye:'Más popular',name:'Pro',price:'$9.99',sub:'/mes',desc:'100 consultas al mes — suficiente para cualquier práctica activa con láser.',on:['100 consultas/mes','Biblioteca completa de dispositivos','Calculadora de dosimetría','Referencias con evidencia'],off:[],btn:'Suscribirse — $9.99/mes',href:PRO_USD,sol:true,ft:true},
+    {eye:'Acceso completo',name:'Elite',price:'$29.99',sub:'/mes',desc:'Consultas ilimitadas + soporte prioritario para clínicas de alto volumen.',on:['Consultas ilimitadas','Todo lo de Pro','Acceso anticipado a funciones','Canal de soporte directo'],off:[],btn:'Suscribirse — $29.99/mes',href:ELITE_USD,sol:false,ft:false}
   ],
   te:'Testimonios',th:'Confiado por profesionales dentales',
   testis:[
@@ -234,8 +239,8 @@ en:{
   pe:'Pricing',ph:'Simple, transparent plans',ps:'Start free. Upgrade when you need more.',
   plans:[
     {eye:'Free tier',name:'Free',price:'$0',sub:'/mo',desc:'One full consultation to experience LaserRx — no credit card needed.',on:['1 AI consultation','Device library preview'],off:['Dosimetry calculator','Evidence citations'],btn:'Get started free',href:CHAT,sol:false,ft:false},
-    {eye:'Most popular',name:'Pro',price:'$9.99',sub:'/mo',desc:'100 consultations per month — enough for any active laser practice.',on:['100 consultations/month','Full device library','Dosimetry calculator','Evidence citations'],off:[],btn:'Subscribe — $9.99/mo',href:PRO,sol:true,ft:true},
-    {eye:'Full access',name:'Elite',price:'$29.99',sub:'/mo',desc:'Unlimited consultations + priority support for high-volume clinics.',on:['Unlimited consultations','Everything in Pro','Early feature access','Direct support channel'],off:[],btn:'Subscribe — $29.99/mo',href:ELITE,sol:false,ft:false}
+    {eye:'Most popular',name:'Pro',price:'$9.99',sub:'/mo',desc:'100 consultations per month — enough for any active laser practice.',on:['100 consultations/month','Full device library','Dosimetry calculator','Evidence citations'],off:[],btn:'Subscribe — $9.99/mo',href:PRO_USD,sol:true,ft:true},
+    {eye:'Full access',name:'Elite',price:'$29.99',sub:'/mo',desc:'Unlimited consultations + priority support for high-volume clinics.',on:['Unlimited consultations','Everything in Pro','Early feature access','Direct support channel'],off:[],btn:'Subscribe — $29.99/mo',href:ELITE_USD,sol:false,ft:false}
   ],
   te:'Testimonials',th:'Trusted by dental professionals',
   testis:[
@@ -272,8 +277,8 @@ ko:{
   pe:'요금제',ph:'간단하고 투명한 플랜',ps:'무료로 시작하세요. 필요할 때 업그레이드하세요.',
   plans:[
     {eye:'무료',name:'무료',price:'$0',sub:'/월',desc:'LaserRx를 경험할 수 있는 한 번의 전체 상담 — 신용카드 불필요.',on:['1회 AI 상담','기기 라이브러리 미리보기'],off:['선량 계산기','근거 인용'],btn:'무료로 시작',href:CHAT,sol:false,ft:false},
-    {eye:'가장 인기 있는',name:'Pro',price:'$9.99',sub:'/월',desc:'월 100회 상담 — 활발한 레이저 진료에 충분한 양입니다.',on:['월 100회 상담','전체 기기 라이브러리','선량 계산기','근거 인용'],off:[],btn:'구독 — $9.99/월',href:PRO,sol:true,ft:true},
-    {eye:'전체 이용',name:'Elite',price:'$29.99',sub:'/월',desc:'무제한 상담 + 고용량 클리닉을 위한 우선 지원.',on:['무제한 상담','Pro의 모든 기능','얼리 액세스','전용 지원 채널'],off:[],btn:'구독 — $29.99/월',href:ELITE,sol:false,ft:false}
+    {eye:'가장 인기 있는',name:'Pro',price:'$9.99',sub:'/월',desc:'월 100회 상담 — 활발한 레이저 진료에 충분한 양입니다.',on:['월 100회 상담','전체 기기 라이브러리','선량 계산기','근거 인용'],off:[],btn:'구독 — $9.99/월',href:PRO_USD,sol:true,ft:true},
+    {eye:'전체 이용',name:'Elite',price:'$29.99',sub:'/월',desc:'무제한 상담 + 고용량 클리닉을 위한 우선 지원.',on:['무제한 상담','Pro의 모든 기능','얼리 액세스','전용 지원 채널'],off:[],btn:'구독 — $29.99/월',href:ELITE_USD,sol:false,ft:false}
   ],
   te:'사용 후기',th:'치과 전문가들의 신뢰',
   testis:[
@@ -310,8 +315,8 @@ ja:{
   pe:'料金プラン',ph:'シンプルで透明な料金体系',ps:'無料で始めて、必要に応じてアップグレード。',
   plans:[
     {eye:'無料プラン',name:'無料',price:'$0',sub:'/月',desc:'LaserRxを体験できる1回のフルコンサルト — クレジットカード不要。',on:['1回のAIコンサルト','デバイスライブラリプレビュー'],off:['線量計算機','エビデンス引用'],btn:'無料で始める',href:CHAT,sol:false,ft:false},
-    {eye:'最も人気',name:'Pro',price:'$9.99',sub:'/月',desc:'月100回のコンサルト — 積極的なレーザー診療に十分な量。',on:['月100回のコンサルト','完全なデバイスライブラリ','線量計算機','エビデンス引用'],off:[],btn:'登録 — $9.99/月',href:PRO,sol:true,ft:true},
-    {eye:'フルアクセス',name:'Elite',price:'$29.99',sub:'/月',desc:'無制限のコンサルト + 大容量クリニック向け優先サポート。',on:['無制限のコンサルト','Proのすべての機能','早期機能アクセス','専用サポートチャンネル'],off:[],btn:'登録 — $29.99/月',href:ELITE,sol:false,ft:false}
+    {eye:'最も人気',name:'Pro',price:'$9.99',sub:'/月',desc:'月100回のコンサルト — 積極的なレーザー診療に十分な量。',on:['月100回のコンサルト','完全なデバイスライブラリ','線量計算機','エビデンス引用'],off:[],btn:'登録 — $9.99/月',href:PRO_USD,sol:true,ft:true},
+    {eye:'フルアクセス',name:'Elite',price:'$29.99',sub:'/月',desc:'無制限のコンサルト + 大容量クリニック向け優先サポート。',on:['無制限のコンサルト','Proのすべての機能','早期機能アクセス','専用サポートチャンネル'],off:[],btn:'登録 — $29.99/月',href:ELITE_USD,sol:false,ft:false}
   ],
   te:'ユーザーの声',th:'歯科専門家からの信頼',
   testis:[
@@ -348,8 +353,8 @@ pt:{
   pe:'Planos',ph:'Planos simples e transparentes',ps:'Comece grátis. Faça upgrade quando precisar de mais.',
   plans:[
     {eye:'Plano gratuito',name:'Grátis',price:'$0',sub:'/mês',desc:'Uma consulta completa para experimentar o LaserRx — sem cartão de crédito.',on:['1 consulta com IA','Prévia da biblioteca de dispositivos'],off:['Calculadora de dosimetria','Referências com evidências'],btn:'Começar grátis',href:CHAT,sol:false,ft:false},
-    {eye:'Mais popular',name:'Pro',price:'$9.99',sub:'/mês',desc:'100 consultas por mês — suficiente para qualquer prática ativa com laser.',on:['100 consultas/mês','Biblioteca completa de dispositivos','Calculadora de dosimetria','Referências com evidências'],off:[],btn:'Assinar — $9.99/mês',href:PRO,sol:true,ft:true},
-    {eye:'Acesso completo',name:'Elite',price:'$29.99',sub:'/mês',desc:'Consultas ilimitadas + suporte prioritário para clínicas de alto volume.',on:['Consultas ilimitadas','Tudo do Pro','Acesso antecipado a funcionalidades','Canal de suporte direto'],off:[],btn:'Assinar — $29.99/mês',href:ELITE,sol:false,ft:false}
+    {eye:'Mais popular',name:'Pro',price:'$9.99',sub:'/mês',desc:'100 consultas por mês — suficiente para qualquer prática ativa com laser.',on:['100 consultas/mês','Biblioteca completa de dispositivos','Calculadora de dosimetria','Referências com evidências'],off:[],btn:'Assinar — $9.99/mês',href:PRO_USD,sol:true,ft:true},
+    {eye:'Acesso completo',name:'Elite',price:'$29.99',sub:'/mês',desc:'Consultas ilimitadas + suporte prioritário para clínicas de alto volume.',on:['Consultas ilimitadas','Tudo do Pro','Acesso antecipado a funcionalidades','Canal de suporte direto'],off:[],btn:'Assinar — $29.99/mês',href:ELITE_USD,sol:false,ft:false}
   ],
   te:'Depoimentos',th:'Confiado por profissionais dentários',
   testis:[
@@ -387,11 +392,45 @@ function build(t){
   +'<hr class="dv">'
   +'<div class="sec" id="demo"><div class="mono sec-eye">'+t.de+'</div><div class="sec-h">'+t.dh+'</div><div class="sec-sub">'+t.ds+'</div><div class="cwrap"><div class="ctop"><div class="ctico"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" width="14" height="14"><polygon points="12 2 15 9 22 9 16 14 18 21 12 17 6 21 8 14 2 9 9 9"/></svg></div><div><div class="ctname">LaserRx AI</div><div class="ctstatus"><div class="sdot"></div>ready</div></div><div class="ctpills"><span class="ctpill">Plan: Free</span><span class="ctpill">1 consult</span></div></div><div class="cbody"><div class="msg"><div class="bbl ai">'+t.ca1+'</div></div><div class="msg u"><div class="bbl u">'+t.cu+'</div></div><div class="msg"><div class="bbl ai"><span class="ptag">'+t.ctag+'</span><br>'+t.ca2.replace(/\n/g,'<br>')+'<span class="uphint">'+t.cup+'</span></div></div></div><div class="cfoot"><div class="cinmock">'+t.cph+'</div><button class="csendbtn" onclick="window.open(\''+CHAT+'\',\'_blank\')">'+t.csend+'</button></div></div></div>'
   +'<hr class="dv">'
-  +'<div class="sec" id="pricing"><div class="mono sec-eye">'+t.pe+'</div><div class="sec-h">'+t.ph+'</div><div class="sec-sub">'+t.ps+'</div><div class="pgrid">'+plans+'</div></div>'
+  +'<div class="sec" id="pricing"><div class="mono sec-eye">'+t.pe+'</div><div class="sec-h">'+t.ph+'</div><div class="sec-sub">'+t.ps+'</div><div style="display:flex;gap:8px;margin-bottom:20px;"><button id="btnMXN" onclick="setCurrency(&quot;mxn&quot;)" style="padding:8px 20px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;background:transparent;color:var(--nv);border:1px solid var(--br);font-family:inherit;">&#127474;&#127485; México (MXN)</button><button id="btnUSD" onclick="setCurrency(&quot;usd&quot;)" style="padding:8px 20px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;background:var(--nv);color:#fff;border:none;font-family:inherit;">&#127758; Internacional (USD)</button></div><div class="pgrid" id="pgrid">'+plans+'</div></div>'
   +'<hr class="dv">'
   +'<div class="sec" id="testimonials"><div class="mono sec-eye">'+t.te+'</div><div class="sec-h">'+t.th+'</div><div class="tgrid">'+testis+'</div></div>'
   +'<hr class="dv">'
   +'<div class="sec"><div class="cta"><div class="ctagrid"></div><h2>'+t.cth+'</h2><p class="ctap">'+t.ctp.replace(/\n/g,'<br>')+'</p><div class="erow"><input class="ein" type="email" placeholder="'+t.ctin+'"><button class="ebtn" onclick="window.open(\''+CHAT+'\',\'_blank\')">'+t.ctbtn+'</button></div><div class="ctanote">'+t.ctnote+'</div></div></div>';
+}
+
+function setCurrency(c){
+  currency=c;
+  var btnM=document.getElementById('btnMXN');
+  var btnU=document.getElementById('btnUSD');
+  btnM.style.background=c==='mxn'?'var(--nv)':'transparent';
+  btnM.style.color=c==='mxn'?'#fff':'var(--nv)';
+  btnM.style.border=c==='mxn'?'none':'1px solid var(--br)';
+  btnU.style.background=c==='usd'?'var(--nv)':'transparent';
+  btnU.style.color=c==='usd'?'#fff':'var(--nv)';
+  btnU.style.border=c==='usd'?'none':'1px solid var(--br)';
+  var t=T[lang];
+  var plans=buildPlans(t,c);
+  document.getElementById('pgrid').innerHTML=plans;
+}
+
+function buildPlans(t,c){
+  var proPrice=c==='mxn'?'$149':'$9.99';
+  var elitePrice=c==='mxn'?'$449':'$29.99';
+  var proSub=c==='mxn'?'/mes':t.plans[1].sub;
+  var eliteSub=c==='mxn'?'/mes':t.plans[2].sub;
+  var proHref=c==='mxn'?PRO_MXN:PRO_USD;
+  var eliteHref=c==='mxn'?ELITE_MXN:ELITE_USD;
+  return t.plans.map(function(p,i){
+    var href=i===0?CHAT:(i===1?proHref:eliteHref);
+    var price=i===0?p.price:(i===1?proPrice:elitePrice);
+    var sub=i===0?p.sub:(i===1?proSub:eliteSub);
+    var rows=p.on.map(function(f){return'<div class="prow">'+ck()+'<span>'+f+'</span></div>';}).join('');
+    var offs=p.off.map(function(f){return'<div class="prow off">'+xx()+'<span>'+f+'</span></div>';}).join('');
+    var eyeHTML=p.ft?'<div class="peye"><span class="pbadge">'+p.eye+'</span></div>':'<div class="peye">'+p.eye+'</div>';
+    var ext=href.startsWith('http')?' target="_blank"':'';
+    return '<div class="plan'+(p.ft?' ft':'')+'">'+eyeHTML+'<div class="pname">'+p.name+'</div><div class="pprice">'+price+'<sub>'+sub+'</sub></div><div class="pdesc">'+p.desc+'</div><hr class="psep">'+rows+offs+'<a href="'+href+'" class="pbtn '+(p.sol?'sol':'out')+'"'+ext+'>'+p.btn+'</a></div>';
+  }).join('');
 }
 
 var lang='es';
@@ -403,6 +442,8 @@ function setL(l){
   document.getElementById('og-desc').content=T[l].meta;
   document.documentElement.lang=l;
   document.querySelectorAll('.lb').forEach(function(b){b.classList.toggle('on',b.dataset.l===l);});
+  // Re-apply current currency after language change
+  if(document.getElementById('pgrid')) setCurrency(currency);
 }
 setL('es');
 </script>
