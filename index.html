@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -179,6 +180,55 @@ section{padding:80px 0 0}
 .mod-meta{
   margin-top:10px;padding-top:12px;border-top:1px dashed var(--hairline);
   font-family:var(--mono);font-size:10px;color:var(--navy);letter-spacing:0.04em;
+}
+
+/* ─── VIDEO ─── */
+.video-frame{
+  position:relative;
+  background:var(--navy);
+  border:1px solid var(--hairline);
+  border-radius:3px;
+  padding:14px;
+  margin-bottom:24px;
+  box-shadow:0 1px 0 rgba(13,27,42,.04), 0 12px 28px -18px rgba(13,27,42,.18);
+}
+.video-bar{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:0 4px 10px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.18em;
+  color:rgba(224,225,221,.55);text-transform:uppercase;
+}
+.video-bar-left{display:flex;align-items:center;gap:10px}
+.video-bar-dot{
+  width:6px;height:6px;border-radius:50%;background:var(--amber);
+  box-shadow:0 0 0 3px rgba(230,165,80,.18);
+}
+.video-bar-tag{color:var(--cream);opacity:.85}
+.video-bar-pipe{opacity:.4}
+.video-aspect{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/9;
+  background:#000;
+  border-radius:2px;
+  overflow:hidden;
+}
+.video-aspect iframe{
+  position:absolute;inset:0;width:100%;height:100%;border:0;display:block;
+}
+.video-corner{
+  position:absolute;width:10px;height:10px;
+  border:1.5px solid var(--steel);
+  pointer-events:none;
+}
+.video-corner.tl{top:-1px;left:-1px;border-right:0;border-bottom:0}
+.video-corner.tr{top:-1px;right:-1px;border-left:0;border-bottom:0}
+.video-corner.bl{bottom:-1px;left:-1px;border-right:0;border-top:0}
+.video-corner.br{bottom:-1px;right:-1px;border-left:0;border-top:0}
+@media(max-width:880px){
+  .video-frame{padding:10px}
+  .video-bar{font-size:9px;padding:0 2px 8px}
+  .video-bar-tag-hide-mobile{display:none}
 }
 
 /* ─── HOW IT WORKS ─── */
@@ -656,6 +706,9 @@ es:{
   cta2:'Ver planes →',
   tour:'Guía rápida · 60s',
   ro:[['20+','Longitudes de onda'],['30+','Marcas verificadas'],['<5s','Respuesta'],['100%','Evidencia citada']],
+  videoEye:'Ver en 30 segundos',
+  videoH:'LaserRx en acción.',
+  videoSub:'Una consulta real, de la pregunta al protocolo validado.',
   modEye:'Cuatro módulos',
   modH:'Preguntas clínicas por módulo.',
   modSub:'Cada módulo está optimizado para una decisión chairside distinta — sin IA genérica.',
@@ -736,6 +789,9 @@ en:{
   cta2:'See pricing →',
   tour:'Quick guide · 60s',
   ro:[['20+','Wavelengths'],['30+','Verified brands'],['<5s','Response'],['100%','Evidence-cited']],
+  videoEye:'See it in 30 seconds',
+  videoH:'LaserRx in action.',
+  videoSub:'A real consultation, from question to validated protocol.',
   modEye:'Four modules',
   modH:'Clinical questions per module.',
   modSub:'Each module is optimized for a different chairside decision — no generic AI.',
@@ -816,6 +872,9 @@ pt:{
   cta2:'Ver planos →',
   tour:'Guia rápido · 60s',
   ro:[['20+','Comprimentos de onda'],['30+','Marcas verificadas'],['<5s','Resposta'],['100%','Com evidências']],
+  videoEye:'Veja em 30 segundos',
+  videoH:'LaserRx em ação.',
+  videoSub:'Uma consulta real, da pergunta ao protocolo validado.',
   modEye:'Quatro módulos',
   modH:'Perguntas clínicas por módulo.',
   modSub:'Cada módulo é otimizado para uma decisão clínica diferente — sem IA genérica.',
@@ -884,6 +943,9 @@ ja:{
   cta2:'料金を見る →',
   tour:'クイックガイド · 60秒',
   ro:[['20+','波長'],['30+','検証済ブランド'],['<5秒','応答'],['100%','エビデンス']],
+  videoEye:'30秒でわかる',
+  videoH:'LaserRxの実演。',
+  videoSub:'実際の臨床相談 — 質問から検証済プロトコルまで。',
   modEye:'4つのモジュール',
   modH:'モジュールごとの臨床質問。',
   modSub:'各モジュールは異なるチェアサイドの判断に最適化されています。',
@@ -964,6 +1026,9 @@ ko:{
   cta2:'요금제 보기 →',
   tour:'빠른 가이드 · 60초',
   ro:[['20+','파장'],['30+','검증된 브랜드'],['<5초','응답'],['100%','근거 인용']],
+  videoEye:'30초로 확인',
+  videoH:'LaserRx 실제 사용.',
+  videoSub:'실제 진료 — 질문부터 검증된 프로토콜까지.',
   modEye:'네 가지 모듈',
   modH:'모듈별 임상 질문.',
   modSub:'각 모듈은 서로 다른 진료현장 결정에 최적화 — 일반 AI 아님.',
@@ -1145,6 +1210,32 @@ function render(){
   +       '<button class="btn-tour" onclick="openTour()" type="button"><span class="play"><svg width="9" height="9" viewBox="0 0 9 9" fill="currentColor"><polygon points="2,1 7.5,4.5 2,8"/></svg></span>'+t.tour+'</button>'
   +     '</div>'
   +     '<div class="readouts">'+ros+'</div>'
+  +   '</div>'
+  + '</section>'
+
+  + '<section id="video">'
+  +   '<div class="sec-head">'
+  +     '<div class="sec-eye">'+t.videoEye+'</div>'
+  +     '<div class="sec-h">'+t.videoH+'</div>'
+  +     '<div class="sec-sub">'+t.videoSub+'</div>'
+  +   '</div>'
+  +   '<div class="video-frame">'
+  +     '<div class="video-corner tl"></div>'
+  +     '<div class="video-corner tr"></div>'
+  +     '<div class="video-corner bl"></div>'
+  +     '<div class="video-corner br"></div>'
+  +     '<div class="video-bar">'
+  +       '<div class="video-bar-left">'
+  +         '<span class="video-bar-dot"></span>'
+  +         '<span class="video-bar-tag">LASERRX · PROMO</span>'
+  +         '<span class="video-bar-pipe video-bar-tag-hide-mobile">|</span>'
+  +         '<span class="video-bar-tag-hide-mobile">EN · 1080p</span>'
+  +       '</div>'
+  +       '<div>00:30</div>'
+  +     '</div>'
+  +     '<div class="video-aspect">'
+  +       '<iframe src="https://www.youtube-nocookie.com/embed/sFS8CA1DUZ0?rel=0&modestbranding=1&playsinline=1" title="LaserRx" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
+  +     '</div>'
   +   '</div>'
   + '</section>'
 
