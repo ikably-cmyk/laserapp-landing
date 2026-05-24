@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -34,6 +33,7 @@
   --protocols:  oklch(0.66 0.09 70);
   --validate:   oklch(0.62 0.08 150);
   --calculator: oklch(0.58 0.07 290);
+  --pbm:        oklch(0.60 0.13 340);
   --amber:      oklch(0.66 0.09 70);
   --amberDeep:  oklch(0.58 0.10 65);
   --sans:'Instrument Sans','Noto Sans KR','Noto Sans JP',system-ui,sans-serif;
@@ -159,11 +159,11 @@ section{padding:80px 0 0}
 .sec-sub{font-size:15px;line-height:1.6;color:var(--steel);max-width:560px}
 
 /* ─── MODULES ─── */
-.mods{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.mods{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
 .mod{
   background:var(--white);border:1px solid var(--hairline);
   border-left:3px solid var(--steel);
-  border-radius:3px;padding:22px 20px 24px;display:flex;flex-direction:column;gap:10px;
+  border-radius:3px;padding:22px 18px 24px;display:flex;flex-direction:column;gap:10px;
   position:relative;transition:transform .15s, border-color .15s;
 }
 .mod:hover{transform:translateY(-2px)}
@@ -171,6 +171,7 @@ section{padding:80px 0 0}
 .mod[data-m="protocols"] {border-left-color:var(--protocols)}
 .mod[data-m="validate"]  {border-left-color:var(--validate)}
 .mod[data-m="calculator"]{border-left-color:var(--calculator)}
+.mod[data-m="pbm"]       {border-left-color:var(--pbm)}
 .mod-num{
   font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.14em;
   color:var(--steel);text-transform:uppercase;display:flex;justify-content:space-between;
@@ -179,8 +180,9 @@ section{padding:80px 0 0}
 .mod[data-m="protocols"] .mod-num .label {color:var(--protocols)}
 .mod[data-m="validate"] .mod-num .label  {color:var(--validate)}
 .mod[data-m="calculator"] .mod-num .label{color:var(--calculator)}
-.mod-name{font-size:18px;font-weight:600;color:var(--navy);letter-spacing:-0.01em;margin-top:4px}
-.mod-desc{font-size:13px;line-height:1.55;color:var(--steel);flex:1}
+.mod[data-m="pbm"] .mod-num .label       {color:var(--pbm)}
+.mod-name{font-size:17px;font-weight:600;color:var(--navy);letter-spacing:-0.01em;margin-top:4px}
+.mod-desc{font-size:12.5px;line-height:1.55;color:var(--steel);flex:1}
 .mod-meta{
   margin-top:10px;padding-top:12px;border-top:1px dashed var(--hairline);
   font-family:var(--mono);font-size:10px;color:var(--navy);letter-spacing:0.04em;
@@ -363,14 +365,17 @@ section{padding:80px 0 0}
 .cur-btn.on{background:var(--navy);color:var(--cream)}
 .cur-btn .flag{font-size:13px}
 
-.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:stretch}
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:stretch}
 .plan{
   background:var(--white);border:1px solid var(--hairline);border-radius:3px;
-  padding:28px 26px;display:flex;flex-direction:column;position:relative;
+  padding:24px 22px;display:flex;flex-direction:column;position:relative;
 }
 .plan.feat{
   background:var(--navy);border-color:var(--navy);color:var(--cream);
   box-shadow:0 18px 40px -22px rgba(13,27,42,.45);
+}
+.plan.pbm{
+  border-top:3px solid var(--pbm);
 }
 .plan-eye{
   font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.16em;
@@ -381,57 +386,133 @@ section{padding:80px 0 0}
   display:inline-block;font-family:var(--mono);font-size:9px;font-weight:700;
   background:var(--protocols);color:var(--ink);padding:3px 8px;border-radius:2px;letter-spacing:0.14em;
 }
-.plan-name{font-size:22px;font-weight:600;margin-top:12px;letter-spacing:-0.01em}
+.plan-name{font-size:20px;font-weight:600;margin-top:12px;letter-spacing:-0.01em}
 .plan.feat .plan-name{color:var(--white)}
 
-.price-block{margin-top:20px;display:flex;align-items:flex-end;gap:10px}
+.price-block{margin-top:18px;display:flex;align-items:flex-end;gap:8px}
 .price-big{
-  font-size:84px;font-weight:600;line-height:.92;letter-spacing:-0.04em;
+  font-size:62px;font-weight:600;line-height:.92;letter-spacing:-0.04em;
   font-family:var(--sans);color:var(--navy);
 }
 .plan.feat .price-big{color:var(--white)}
-.price-big .currency{font-size:28px;font-weight:500;vertical-align:top;color:var(--steel);margin-right:2px;letter-spacing:-0.02em}
+.price-big .currency{font-size:20px;font-weight:500;vertical-align:top;color:var(--steel);margin-right:2px;letter-spacing:-0.02em}
 .plan.feat .price-big .currency{color:var(--steelMute)}
-.price-side{display:flex;flex-direction:column;gap:2px;padding-bottom:10px}
+.price-side{display:flex;flex-direction:column;gap:2px;padding-bottom:8px}
 .price-unit{
-  font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:0.14em;
+  font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.14em;
   text-transform:uppercase;color:var(--steel);
 }
 .plan.feat .price-unit{color:var(--steelMute)}
-.price-cap{font-family:var(--mono);font-size:9px;color:var(--steel);letter-spacing:0.1em}
+.price-cap{font-family:var(--mono);font-size:9px;color:var(--steel);letter-spacing:0.08em}
 .plan.feat .price-cap{color:var(--steel)}
 
 .price-sub{
-  margin-top:14px;padding:10px 12px;background:var(--paper);
+  margin-top:12px;padding:9px 11px;background:var(--paper);
   border:1px dashed var(--hairline);border-radius:3px;
-  font-family:var(--mono);font-size:11px;color:var(--navy);letter-spacing:0.02em;
+  font-family:var(--mono);font-size:10px;color:var(--navy);letter-spacing:0.02em;
   display:flex;justify-content:space-between;align-items:center;gap:8px;
 }
 .plan.feat .price-sub{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.14);color:var(--cream)}
-.price-sub .x{color:var(--steel);text-transform:uppercase;letter-spacing:0.14em;font-size:9px}
+.price-sub .x{color:var(--steel);text-transform:uppercase;letter-spacing:0.14em;font-size:8.5px}
 .plan.feat .price-sub .x{color:var(--steelMute)}
 
-.plan-desc{margin-top:18px;font-size:13px;line-height:1.55;color:var(--steel);min-height:54px}
+.plan-desc{margin-top:14px;font-size:12.5px;line-height:1.5;color:var(--steel);min-height:46px}
 .plan.feat .plan-desc{color:var(--steelMute)}
 
-.feats{margin-top:18px;display:flex;flex-direction:column;gap:9px;flex:1}
-.feat-row{display:flex;align-items:flex-start;gap:10px;font-size:13px;line-height:1.45;color:var(--navy)}
+.feats{margin-top:14px;display:flex;flex-direction:column;gap:7px;flex:1}
+.feat-row{display:flex;align-items:flex-start;gap:9px;font-size:12px;line-height:1.4;color:var(--navy)}
 .plan.feat .feat-row{color:var(--cream)}
 .feat-row svg{flex-shrink:0;margin-top:3px}
-.feat-row.off{color:var(--steel)}
+.feat-row.off{color:var(--steel);text-decoration:line-through;text-decoration-color:var(--steelMute);text-decoration-thickness:1px}
+.feat-row.off svg{opacity:.4}
 .plan.feat .feat-row.off{color:var(--steelMute);opacity:.55}
 
+/* Feature row highlighted (PBM in Elite) */
+.feat-row.hl{
+  background:rgba(190,75,160,0.10);
+  border:1px solid var(--pbm);
+  border-radius:3px;
+  padding:7px 9px;
+  margin:2px 0;
+  font-weight:600;
+}
+.feat-row.hl svg{color:var(--pbm);stroke-width:3}
+.plan.feat .feat-row.hl{
+  background:rgba(190,75,160,0.18);
+  border-color:var(--pbm);
+  color:var(--white);
+}
+
 .plan-cta{
-  margin-top:22px;display:block;text-align:center;padding:13px 16px;border-radius:3px;
-  font-size:13px;font-weight:600;font-family:var(--sans);letter-spacing:-0.005em;
+  margin-top:18px;display:block;text-align:center;padding:12px 14px;border-radius:3px;
+  font-size:12.5px;font-weight:600;font-family:var(--sans);letter-spacing:-0.005em;
   border:1px solid var(--hairline);background:var(--white);color:var(--navy);
   transition:border-color .12s,background .12s,color .12s;
 }
 .plan-cta:hover{border-color:var(--navy)}
 .plan.feat .plan-cta{background:var(--protocols);border-color:var(--protocols);color:var(--ink)}
 .plan.feat .plan-cta:hover{background:var(--amberDeep);border-color:var(--amberDeep)}
-.plan-fine{margin-top:12px;font-family:var(--mono);font-size:9px;color:var(--steel);letter-spacing:0.1em;text-align:center;text-transform:uppercase}
+.plan.pbm .plan-cta{background:var(--pbm);border-color:var(--pbm);color:var(--white)}
+.plan.pbm .plan-cta:hover{filter:brightness(0.92)}
+.plan-fine{margin-top:10px;font-family:var(--mono);font-size:8.5px;color:var(--steel);letter-spacing:0.1em;text-align:center;text-transform:uppercase}
 .plan.feat .plan-fine{color:var(--steelMute)}
+
+/* Interval toggle (mensual/anual) + savings strip per card */
+.toggles-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:24px}
+.int-toggle{
+  display:inline-flex;background:var(--white);border:1px solid var(--hairline);
+  border-radius:3px;padding:3px;
+}
+.int-btn{
+  padding:8px 18px;border:none;background:transparent;font-family:var(--mono);
+  font-size:10px;font-weight:700;letter-spacing:0.12em;color:var(--steel);cursor:pointer;border-radius:2px;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.int-btn.on{background:var(--navy);color:var(--cream)}
+.int-btn .save{
+  font-size:8px;background:var(--protocols);color:var(--ink);padding:2px 5px;border-radius:2px;
+  letter-spacing:0.12em;font-weight:700;
+}
+.int-btn.on .save{background:var(--amberDeep);color:var(--ink)}
+
+.savings-strip{
+  margin-top:10px;
+  padding:8px 11px;
+  background:rgba(207,154,73,0.10);
+  border:1px solid var(--amberDeep);
+  border-radius:3px;
+  display:flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:9.5px;font-weight:700;
+  color:var(--amberDeep);letter-spacing:0.10em;text-transform:uppercase;
+}
+.savings-strip .ic{
+  flex-shrink:0;width:14px;height:14px;border-radius:50%;
+  background:var(--amberDeep);color:var(--ink);
+  display:inline-flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700;
+}
+.plan.feat .savings-strip{
+  background:rgba(207,154,73,0.18);
+  border-color:var(--protocols);
+  color:var(--protocols);
+}
+.plan.pbm .savings-strip{
+  background:rgba(190,75,160,0.10);
+  border-color:var(--pbm);
+  color:var(--pbm);
+}
+.plan.pbm .savings-strip .ic{background:var(--pbm);color:var(--white)}
+
+/* Nota PBM arriba del grid de planes */
+.note-pbm{
+  background:rgba(190,75,160,0.06);border:1px dashed var(--pbm);border-radius:3px;
+  padding:12px 14px;margin-bottom:20px;font-size:12.5px;line-height:1.55;color:var(--navy);
+  display:flex;gap:10px;align-items:flex-start;
+}
+.note-pbm .dot{
+  flex-shrink:0;width:8px;height:8px;border-radius:50%;background:var(--pbm);margin-top:5px;
+}
+.note-pbm strong{color:var(--pbm);font-weight:700}
 
 /* ─── TESTIMONIALS ─── */
 .tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
@@ -672,26 +753,55 @@ var __tourSrcdoc = null;
 function tourSrcdoc(){ if(__tourSrcdoc) return __tourSrcdoc; var bin=atob(TOUR_B64); var arr=new Uint8Array(bin.length); for(var i=0;i<bin.length;i++) arr[i]=bin.charCodeAt(i); __tourSrcdoc=new TextDecoder().decode(arr); return __tourSrcdoc; }
 
 /* ─── Stripe links + Chat ─── */
+/* Mensuales (existentes) */
 var PRO_USD   = 'https://buy.stripe.com/dRm3cngZNdvk6DU1IHdIA0D';
 var ELITE_USD = 'https://buy.stripe.com/bJe9ALbFt3UK2nEfzxdIA0E';
 var PRO_MXN   = 'https://buy.stripe.com/6oU8wH9xl0Iyfaq5YXdIA0G';
 var ELITE_MXN = 'https://buy.stripe.com/28E6oz38Xdvkgeu1IHdIA0H';
+/* Anuales (2 meses gratis incluidos) */
+var PRO_USD_YR   = 'https://buy.stripe.com/7sY6ozdNBbncfaqfzxdIA0T';
+var PRO_MXN_YR   = 'https://buy.stripe.com/8x2fZ9cJx9f4aUa3QPdIA0U';
+var ELITE_USD_YR = 'https://buy.stripe.com/7sY8wHfVJ8b08M23QPdIA0V';
+var ELITE_MXN_YR = 'https://buy.stripe.com/28E14ffVJcrg9Q64UTdIA0W';
+/* PBM standalone (mensual + anual) */
+var PBM_USD_MO   = 'https://buy.stripe.com/6oU28jbFt8b0e6m4UTdIA0X';
+var PBM_MXN_MO   = 'https://buy.stripe.com/7sY5kv7pd76W7HY875dIA0Y';
+var PBM_USD_YR   = 'https://buy.stripe.com/eVq8wH24T62Sgeu5YXdIA0Z';
+var PBM_MXN_YR   = 'https://buy.stripe.com/aFaeV5bFtgHw2nEevtdIA10';
 var CHAT      = 'https://app.laserapp.ai';
 
 /* ─── Pricing matrix (DAILY-FIRST strategy) ─── */
-/* Big number = DAILY cost. Subtitle = monthly billing detail. */
+/* Big number = DAILY cost. Subtitle = billing detail. interval = mo | yr */
 var PRICING = {
   usd:{
     sym:'$',
-    free:   {day:'$0',     dayUnit:'USD / day',    bill:'$0/mo',          cap:'1 consultation'},
-    pro:    {day:'$0.33',  dayUnit:'USD / day',    bill:'$9.99/mo',       cap:'100 consultations/mo'},
-    elite:  {day:'$1',     dayUnit:'USD / day',    bill:'$29.99/mo',      cap:'Unlimited consultations'}
+    mo:{
+      free:  {day:'$0',     dayUnit:'USD / day',  bill:'$0/mo',     cap:'1 consultation'},
+      pro:   {day:'$0.33',  dayUnit:'USD / day',  bill:'$9.99/mo',  cap:'100 consultations/mo'},
+      pbm:   {day:'$0.33',  dayUnit:'USD / day',  bill:'$9.99/mo',  cap:'100 PBM consultations/mo'},
+      elite: {day:'$1',     dayUnit:'USD / day',  bill:'$29.99/mo', cap:'Unlimited consultations'}
+    },
+    yr:{
+      free:  {day:'$0',     dayUnit:'USD / day',  bill:'$0/yr',      cap:'1 consultation'},
+      pro:   {day:'$0.27',  dayUnit:'USD / day',  bill:'$99.90/yr',  cap:'100/mo · 1200/yr'},
+      pbm:   {day:'$0.27',  dayUnit:'USD / day',  bill:'$99.90/yr',  cap:'100 PBM/mo · 1200/yr'},
+      elite: {day:'$0.82',  dayUnit:'USD / day',  bill:'$299.90/yr', cap:'Unlimited consultations'}
+    }
   },
   mxn:{
     sym:'$',
-    free:   {day:'$0',     dayUnit:'pesos / día',     bill:'$0 MXN/mes',     cap:'1 consulta'},
-    pro:    {day:'$5',     dayUnit:'pesos / diarios', bill:'$149 MXN/mes',   cap:'100 consultas/mes'},
-    elite:  {day:'$15',    dayUnit:'pesos / diarios', bill:'$449 MXN/mes',   cap:'Consultas ilimitadas'}
+    mo:{
+      free:  {day:'$0',  dayUnit:'pesos / día',     bill:'$0 MXN/mes',     cap:'1 consulta'},
+      pro:   {day:'$5',  dayUnit:'pesos / diarios', bill:'$149 MXN/mes',   cap:'100 consultas/mes'},
+      pbm:   {day:'$5',  dayUnit:'pesos / diarios', bill:'$149 MXN/mes',   cap:'100 consultas PBM/mes'},
+      elite: {day:'$15', dayUnit:'pesos / diarios', bill:'$449 MXN/mes',   cap:'Consultas ilimitadas'}
+    },
+    yr:{
+      free:  {day:'$0',  dayUnit:'pesos / día',     bill:'$0 MXN/año',      cap:'1 consulta'},
+      pro:   {day:'$4',  dayUnit:'pesos / diarios', bill:'$1,490 MXN/año',  cap:'100/mes · 1200/año'},
+      pbm:   {day:'$4',  dayUnit:'pesos / diarios', bill:'$1,490 MXN/año',  cap:'100 PBM/mes · 1200/año'},
+      elite: {day:'$12', dayUnit:'pesos / diarios', bill:'$4,490 MXN/año',  cap:'Consultas ilimitadas'}
+    }
   }
 };
 
@@ -713,14 +823,15 @@ es:{
   videoEye:'Ver en 30 segundos',
   videoH:'LaserRx en acción.',
   videoSub:'Una consulta real, de la pregunta al protocolo validado.',
-  modEye:'Cuatro módulos',
+  modEye:'Cinco módulos',
   modH:'Preguntas clínicas por módulo.',
   modSub:'Cada módulo está optimizado para una decisión chairside distinta — sin IA genérica.',
   mods:[
     {m:'devices',num:'01 · DEVICES',label:'EQUIPO',name:'Tu láser, sus indicaciones',desc:'Encuentra tu equipo entre 30+ marcas y 20+ longitudes de onda — o sube una foto de tu unidad y te decimos qué puede hacer, con qué tip y para qué caso.',meta:'Diodos · Nd:YAG · Er:YAG · Er,Cr:YSGG'},
-    {m:'protocols',num:'02 · PROTOCOLS',label:'PROTOCOLOS',name:'Parámetros paso a paso',desc:'Describe el caso en lenguaje natural. Recibe un protocolo estructurado: fase, potencia, modo, técnica.',meta:'Endo · Perio · Implantes · PBM'},
+    {m:'protocols',num:'02 · PROTOCOLS',label:'PROTOCOLOS',name:'Parámetros paso a paso',desc:'Describe el caso en lenguaje natural. Recibe un protocolo estructurado: fase, potencia, modo, técnica.',meta:'Endo · Perio · Implantes · Cirugía'},
     {m:'validate',num:'03 · VALIDATE',label:'VALIDAR',name:'¿Es seguro lo que voy a hacer?',desc:'Sube una foto de la pantalla de tu láser y revisamos parámetros, dosis y contraindicaciones contra la literatura — antes de disparar.',meta:'Verificación pre-disparo'},
-    {m:'calculator',num:'04 · CALCULATOR',label:'CALCULADORA',name:'Fluencia, energía, tiempo',desc:'Densidad de energía <em>PBM</em> calculada para tu equipo, tamaño de spot e indicación. Sin hojas de cálculo.',meta:'J/cm² · J/punto · ms'}
+    {m:'calculator',num:'04 · CALCULATOR',label:'CALCULADORA',name:'Fluencia, energía, tiempo',desc:'Densidad de energía calculada para tu equipo, tamaño de spot e indicación. Sin hojas de cálculo.',meta:'J/cm² · J/punto · ms'},
+    {m:'pbm',num:'05 · PBM',label:'PBM',name:'Fotobiomodulación clínica',desc:'Dosis exacta por indicación — herpes, alveolitis, parestesia, mucositis. Cálculo personalizado según tu LED/diodo y tip.',meta:'LED · Diodo · LLLT · PDT'}
   ],
   demoEye:'Demo en vivo',
   demoH:'Una consulta real.',
@@ -729,7 +840,7 @@ es:{
   howH:'De la pregunta al protocolo en tres pasos.',
   howSub:'Cada caso clínico sigue el mismo flujo. Toma menos de 30 segundos.',
   howSteps:[
-    ['01','Elige módulo','Cuatro botones: Equipos, Protocolos, Validación o Calculadora. Una decisión, no un menú.','› PROTOCOLS'],
+    ['01','Elige módulo','Cinco botones: Equipos, Protocolos, Validación, Calculadora o PBM. Una decisión, no un menú.','› PROTOCOLS'],
     ['02','Tap o describe','Toca el procedimiento o escríbelo. La IA aclara equipo y caso si falta contexto.','› Periodontitis · 980 nm'],
     ['03','Recibe el protocolo','Parámetros, técnica y referencias citadas. Listo para imprimir o pegar al expediente.','› 1.5 W · CW · 60 s']
   ],
@@ -747,13 +858,19 @@ es:{
   demoSend:'Enviar',
   prEye:'Precios diarios',
   prH:'Menos que una fresa diamantada — al día.',
-  prSub:'El plan Pro se cobra mensual, pero pensamos en costo diario porque cada caso que resuelves vale más que un día completo.',
+  prSub:'Los planes se cobran mensual o anual (con 2 meses gratis), pero pensamos en costo diario porque cada caso que resuelves vale más que un día completo.',
   curMx:'México · MXN',
   curUs:'Internacional · USD',
+  intMo:'Mensual',
+  intYr:'Anual',
+  intSave:'2 MESES GRATIS',
+  savingsLabel:'2 meses gratis incluidos',
+  notePbm:'<strong>PBM se contrata por separado.</strong> El plan Pro no incluye el módulo PBM. Para acceso a PBM contrata el plan <strong>PBM standalone</strong> (solo módulo PBM) o el plan <strong>Elite</strong> (incluye todos los módulos, incluido PBM).',
   plans:[
-    {key:'free', eye:'Plan gratuito', name:'Free',  desc:'Una consulta completa para experimentar LaserRx — sin tarjeta de crédito.', on:['1 consulta IA','Vista previa de dispositivos'], off:['Calculadora de dosimetría','Referencias con evidencia'], cta:'Probar gratis', fine:'Sin tarjeta', href:'CHAT'},
-    {key:'pro',  eye:'Más popular', badge:'POPULAR', name:'Pro', desc:'100 consultas/mes — para cualquier práctica activa con láser. El plan más vendido.', on:['100 consultas/mes','Biblioteca completa de equipos','Calculadora de dosimetría FBP','Referencias con evidencia','Validación de parámetros'], off:[], cta:'Suscribirse a Pro', fine:'Cancela cuando quieras', href:'PRO', feat:true},
-    {key:'elite',eye:'Acceso completo', name:'Elite', desc:'Consultas ilimitadas + soporte directo para clínicas de alto volumen.', on:['Consultas ilimitadas','Todo lo de Pro','Acceso anticipado a funciones','Canal de soporte directo'], off:[], cta:'Suscribirse a Elite', fine:'Cancela cuando quieras', href:'ELITE'}
+    {key:'free', eye:'Plan gratuito', name:'Free',  desc:'Una consulta completa para experimentar LaserRx — sin tarjeta de crédito.', on:['1 consulta IA','Vista previa de dispositivos'], off:['Calculadora de dosimetría','Módulo PBM','Referencias con evidencia'], cta:'Probar gratis', fine:'Sin tarjeta', href:'CHAT'},
+    {key:'pro',  eye:'Más popular', badge:'POPULAR', name:'Pro', desc:'100 consultas/mes — para cualquier práctica activa con láser. El plan más vendido.', on:['100 consultas/mes','Devices · Protocols · Validate · Calculator','Referencias con evidencia','Validación de parámetros'], off:['Módulo PBM (contrátalo aparte)'], cta:'Suscribirse a Pro', fine:'Cancela cuando quieras', href:'PRO', feat:true},
+    {key:'pbm', eye:'Standalone', name:'PBM', desc:'Solo el módulo PBM — dosis y protocolos de fotobiomodulación. Para terapia LED/diodo.', on:['100 consultas PBM/mes','Módulo PBM completo','Cálculo de dosis (J/cm²)','Protocolos por indicación'], off:['Protocols · Devices · Validate · Calculator'], cta:'Suscribirse a PBM', fine:'Cancela cuando quieras', href:'PBM'},
+    {key:'elite',eye:'Acceso completo', name:'Elite', desc:'Consultas ilimitadas + todos los módulos incluido PBM. Para clínicas de alto volumen.', on:['Consultas ilimitadas','Devices · Protocols · Validate · Calculator','Módulo PBM incluido','Acceso anticipado a funciones','Canal de soporte directo'], highlightIdx:2, off:[], cta:'Suscribirse a Elite', fine:'Cancela cuando quieras', href:'ELITE'}
   ],
   prDay:'/diarios',
   prFact:'Facturado',
@@ -796,14 +913,15 @@ en:{
   videoEye:'See it in 30 seconds',
   videoH:'LaserRx in action.',
   videoSub:'A real consultation, from question to validated protocol.',
-  modEye:'Four modules',
+  modEye:'Five modules',
   modH:'Clinical questions per module.',
   modSub:'Each module is optimized for a different chairside decision — no generic AI.',
   mods:[
     {m:'devices',num:'01 · DEVICES',label:'DEVICES',name:'Your laser, its indications',desc:'Search across 30+ brands and 20+ wavelengths — or upload a photo of your unit and we’ll tell you what it can do, with which tip, for which case.',meta:'Diode · Nd:YAG · Er:YAG · Er,Cr:YSGG'},
-    {m:'protocols',num:'02 · PROTOCOLS',label:'PROTOCOLS',name:'Step-by-step parameters',desc:'Describe the case in plain language. Get a structured protocol: phase, power, mode, technique.',meta:'Endo · Perio · Implants · PBM'},
+    {m:'protocols',num:'02 · PROTOCOLS',label:'PROTOCOLS',name:'Step-by-step parameters',desc:'Describe the case in plain language. Get a structured protocol: phase, power, mode, technique.',meta:'Endo · Perio · Implants · Surgery'},
     {m:'validate',num:'03 · VALIDATE',label:'VALIDATE',name:'Is what I’m about to do safe?',desc:'Snap a photo of your laser screen and we check parameters, dose and contraindications against the literature — before you pull the trigger.',meta:'Pre-shot verification'},
-    {m:'calculator',num:'04 · CALCULATOR',label:'CALCULATOR',name:'Fluence, energy, time',desc:'PBM energy density calculated for your device, spot size and indication. No spreadsheet needed.',meta:'J/cm² · J/spot · ms'}
+    {m:'calculator',num:'04 · CALCULATOR',label:'CALCULATOR',name:'Fluence, energy, time',desc:'Energy density calculated for your device, spot size and indication. No spreadsheet needed.',meta:'J/cm² · J/spot · ms'},
+    {m:'pbm',num:'05 · PBM',label:'PBM',name:'Clinical photobiomodulation',desc:'Exact dose by indication — herpes, alveolitis, paresthesia, mucositis. Custom calculation based on your LED/diode and tip.',meta:'LED · Diode · LLLT · PDT'}
   ],
   demoEye:'Live demo',
   demoH:'A real consultation.',
@@ -812,7 +930,7 @@ en:{
   howH:'From question to protocol in three steps.',
   howSub:'Every clinical case follows the same flow. Under 30 seconds.',
   howSteps:[
-    ['01','Pick a module','Four buttons: Devices, Protocols, Validate, Calculator. One decision, not a menu tree.','› PROTOCOLS'],
+    ['01','Pick a module','Five buttons: Devices, Protocols, Validate, Calculator, or PBM. One decision, not a menu tree.','› PROTOCOLS'],
     ['02','Tap or describe','Tap the procedure or type it. The AI clarifies device and case if context is missing.','› Periodontitis · 980 nm'],
     ['03','Get the protocol','Parameters, technique, cited references. Print-ready or paste into the chart.','› 1.5 W · CW · 60 s']
   ],
@@ -830,13 +948,19 @@ en:{
   demoSend:'Send',
   prEye:'Daily pricing',
   prH:'Less than a diamond bur — per day.',
-  prSub:'The Pro plan is billed monthly, but we think in daily cost because every case you solve is worth more than a full day.',
+  prSub:'Plans are billed monthly or annually (with 2 months free), but we think in daily cost because every case you solve is worth more than a full day.',
   curMx:'Mexico · MXN',
   curUs:'International · USD',
+  intMo:'Monthly',
+  intYr:'Annual',
+  intSave:'2 MONTHS FREE',
+  savingsLabel:'2 months free included',
+  notePbm:'<strong>PBM is sold separately.</strong> The Pro plan does not include the PBM module. To access PBM, get the <strong>PBM standalone</strong> plan (PBM-only) or the <strong>Elite</strong> plan (all modules included, PBM included).',
   plans:[
-    {key:'free', eye:'Free tier', name:'Free',  desc:'One full consultation to experience LaserRx — no credit card needed.', on:['1 AI consultation','Device library preview'], off:['Dosimetry calculator','Evidence citations'], cta:'Try for free', fine:'No credit card', href:'CHAT'},
-    {key:'pro',  eye:'Most popular', badge:'POPULAR', name:'Pro', desc:'100 consultations/month — for any active laser practice. Best-selling plan.', on:['100 consultations/month','Full device library','PBM dosimetry calculator','Evidence-based citations','Parameter validation'], off:[], cta:'Subscribe to Pro', fine:'Cancel anytime', href:'PRO', feat:true},
-    {key:'elite',eye:'Full access', name:'Elite', desc:'Unlimited consultations + direct support for high-volume clinics.', on:['Unlimited consultations','Everything in Pro','Early feature access','Direct support channel'], off:[], cta:'Subscribe to Elite', fine:'Cancel anytime', href:'ELITE'}
+    {key:'free', eye:'Free tier', name:'Free',  desc:'One full consultation to experience LaserRx — no credit card needed.', on:['1 AI consultation','Device library preview'], off:['Dosimetry calculator','PBM module','Evidence citations'], cta:'Try for free', fine:'No credit card', href:'CHAT'},
+    {key:'pro',  eye:'Most popular', badge:'POPULAR', name:'Pro', desc:'100 consultations/month — for any active laser practice. Best-selling plan.', on:['100 consultations/month','Devices · Protocols · Validate · Calculator','Evidence-based citations','Parameter validation'], off:['PBM module (purchased separately)'], cta:'Subscribe to Pro', fine:'Cancel anytime', href:'PRO', feat:true},
+    {key:'pbm', eye:'Standalone', name:'PBM', desc:'Just the PBM module — photobiomodulation doses and protocols. For LED/diode therapy.', on:['100 PBM consultations/month','Full PBM module','Dose calculation (J/cm²)','Indication-specific protocols'], off:['Protocols · Devices · Validate · Calculator'], cta:'Subscribe to PBM', fine:'Cancel anytime', href:'PBM'},
+    {key:'elite',eye:'Full access', name:'Elite', desc:'Unlimited consultations + all modules including PBM. For high-volume clinics.', on:['Unlimited consultations','Devices · Protocols · Validate · Calculator','PBM module included','Early feature access','Direct support channel'], highlightIdx:2, off:[], cta:'Subscribe to Elite', fine:'Cancel anytime', href:'ELITE'}
   ],
   prDay:'/day',
   prFact:'Billed',
@@ -879,14 +1003,15 @@ pt:{
   videoEye:'Veja em 30 segundos',
   videoH:'LaserRx em ação.',
   videoSub:'Uma consulta real, da pergunta ao protocolo validado.',
-  modEye:'Quatro módulos',
+  modEye:'Cinco módulos',
   modH:'Perguntas clínicas por módulo.',
   modSub:'Cada módulo é otimizado para uma decisão clínica diferente — sem IA genérica.',
   mods:[
     {m:'devices',num:'01 · DEVICES',label:'EQUIPAMENTO',name:'Seu laser, suas indicações',desc:'Busque em 30+ marcas e 20+ comprimentos de onda — ou envie uma foto do seu equipamento e dizemos o que faz, com qual ponta, para qual caso.',meta:'Diodos · Nd:YAG · Er:YAG · Er,Cr:YSGG'},
-    {m:'protocols',num:'02 · PROTOCOLS',label:'PROTOCOLOS',name:'Parâmetros passo a passo',desc:'Descreva o caso em linguagem natural. Receba um protocolo estruturado: fase, potência, modo, técnica.',meta:'Endo · Perio · Implantes · FBP'},
+    {m:'protocols',num:'02 · PROTOCOLS',label:'PROTOCOLOS',name:'Parâmetros passo a passo',desc:'Descreva o caso em linguagem natural. Receba um protocolo estruturado: fase, potência, modo, técnica.',meta:'Endo · Perio · Implantes · Cirurgia'},
     {m:'validate',num:'03 · VALIDATE',label:'VALIDAR',name:'É seguro o que vou fazer?',desc:'Envie uma foto da tela do seu laser e checamos parâmetros, dose e contraindicações contra a literatura — antes de disparar.',meta:'Verificação pré-disparo'},
-    {m:'calculator',num:'04 · CALCULATOR',label:'CALCULADORA',name:'Fluência, energia, tempo',desc:'Densidade de energia <em>PBM</em> calculada para seu equipamento, tamanho do spot e indicação. Sem planilhas.',meta:'J/cm² · J/ponto · ms'}
+    {m:'calculator',num:'04 · CALCULATOR',label:'CALCULADORA',name:'Fluência, energia, tempo',desc:'Densidade de energia calculada para seu equipamento, tamanho do spot e indicação. Sem planilhas.',meta:'J/cm² · J/ponto · ms'},
+    {m:'pbm',num:'05 · PBM',label:'PBM',name:'Fotobiomodulação clínica',desc:'Dose exata por indicação — herpes, alveolite, parestesia, mucosite. Cálculo personalizado conforme seu LED/diodo e ponta.',meta:'LED · Diodo · LLLT · PDT'}
   ],
   demoEye:'Demo ao vivo',
   demoH:'Uma consulta real.',
@@ -901,13 +1026,19 @@ pt:{
   demoSend:'Enviar',
   prEye:'Preço diário',
   prH:'Menos que uma broca diamantada — por dia.',
-  prSub:'O plano Pro é cobrado mensalmente, mas pensamos em custo diário porque cada caso que você resolve vale mais que um dia inteiro.',
+  prSub:'Os planos são cobrados mensal ou anualmente (com 2 meses grátis), mas pensamos em custo diário porque cada caso resolvido vale mais que um dia inteiro.',
   curMx:'México · MXN',
   curUs:'Internacional · USD',
+  intMo:'Mensal',
+  intYr:'Anual',
+  intSave:'2 MESES GRÁTIS',
+  savingsLabel:'2 meses grátis inclusos',
+  notePbm:'<strong>PBM é vendido separadamente.</strong> O plano Pro não inclui o módulo PBM. Para acessar PBM, adquira o plano <strong>PBM standalone</strong> (apenas PBM) ou o plano <strong>Elite</strong> (todos os módulos, incluindo PBM).',
   plans:[
-    {key:'free', eye:'Plano grátis', name:'Free',  desc:'Uma consulta completa para experimentar o LaserRx — sem cartão.', on:['1 consulta IA','Prévia da biblioteca'], off:['Calculadora de dosimetria','Referências com evidências'], cta:'Testar grátis', fine:'Sem cartão', href:'CHAT'},
-    {key:'pro',  eye:'Mais popular', badge:'POPULAR', name:'Pro', desc:'100 consultas/mês — para qualquer prática ativa com laser.', on:['100 consultas/mês','Biblioteca completa de equipamentos','Calculadora FBP','Referências com evidências','Validação de parâmetros'], off:[], cta:'Assinar Pro', fine:'Cancele quando quiser', href:'PRO', feat:true},
-    {key:'elite',eye:'Acesso completo', name:'Elite', desc:'Consultas ilimitadas + suporte direto para clínicas de alto volume.', on:['Consultas ilimitadas','Tudo do Pro','Acesso antecipado','Canal de suporte direto'], off:[], cta:'Assinar Elite', fine:'Cancele quando quiser', href:'ELITE'}
+    {key:'free', eye:'Plano grátis', name:'Free',  desc:'Uma consulta completa para experimentar o LaserRx — sem cartão.', on:['1 consulta IA','Prévia da biblioteca'], off:['Calculadora de dosimetria','Módulo PBM','Referências com evidências'], cta:'Testar grátis', fine:'Sem cartão', href:'CHAT'},
+    {key:'pro',  eye:'Mais popular', badge:'POPULAR', name:'Pro', desc:'100 consultas/mês — para qualquer prática ativa com laser.', on:['100 consultas/mês','Devices · Protocols · Validate · Calculator','Referências com evidências','Validação de parâmetros'], off:['Módulo PBM (vendido à parte)'], cta:'Assinar Pro', fine:'Cancele quando quiser', href:'PRO', feat:true},
+    {key:'pbm', eye:'Standalone', name:'PBM', desc:'Apenas o módulo PBM — doses e protocolos de fotobiomodulação. Para terapia LED/diodo.', on:['100 consultas PBM/mês','Módulo PBM completo','Cálculo de dose (J/cm²)','Protocolos por indicação'], off:['Protocols · Devices · Validate · Calculator'], cta:'Assinar PBM', fine:'Cancele quando quiser', href:'PBM'},
+    {key:'elite',eye:'Acesso completo', name:'Elite', desc:'Consultas ilimitadas + todos os módulos incluindo PBM. Para clínicas de alto volume.', on:['Consultas ilimitadas','Devices · Protocols · Validate · Calculator','Módulo PBM incluso','Acesso antecipado','Canal de suporte direto'], highlightIdx:2, off:[], cta:'Assinar Elite', fine:'Cancele quando quiser', href:'ELITE'}
   ],
   prDay:'/dia',
   prFact:'Cobrado',
@@ -950,14 +1081,15 @@ ja:{
   videoEye:'30秒でわかる',
   videoH:'LaserRxの実演。',
   videoSub:'実際の臨床相談 — 質問から検証済プロトコルまで。',
-  modEye:'4つのモジュール',
+  modEye:'5つのモジュール',
   modH:'モジュールごとの臨床質問。',
   modSub:'各モジュールは異なるチェアサイドの判断に最適化されています。',
   mods:[
     {m:'devices',num:'01 · DEVICES',label:'機器',name:'あなたのレーザーとその適応',desc:'30+ブランド、20+波長から検索 — または機器の写真をアップロードすると、どのチップでどの症例に使えるかをお答えします。',meta:'ダイオード · Nd:YAG · Er:YAG · Er,Cr:YSGG'},
-    {m:'protocols',num:'02 · PROTOCOLS',label:'プロトコル',name:'段階的なパラメータ',desc:'平易な言葉でケースを説明 — 構造化されたプロトコルが返ります。',meta:'エンド · ペリオ · インプラント · PBM'},
+    {m:'protocols',num:'02 · PROTOCOLS',label:'プロトコル',name:'段階的なパラメータ',desc:'平易な言葉でケースを説明 — 構造化されたプロトコルが返ります。',meta:'エンド · ペリオ · インプラント · 外科'},
     {m:'validate',num:'03 · VALIDATE',label:'検証',name:'安全に行えるか？',desc:'レーザー画面の写真をアップロードすると、発射前にパラメータ・線量・禁忌を文献に照らして確認します。',meta:'発射前検証'},
-    {m:'calculator',num:'04 · CALCULATOR',label:'計算機',name:'フルエンス、エネルギー、時間',desc:'機器、スポット、適応に合わせたPBMエネルギー密度を計算。',meta:'J/cm² · J/点 · ms'}
+    {m:'calculator',num:'04 · CALCULATOR',label:'計算機',name:'フルエンス、エネルギー、時間',desc:'機器、スポット、適応に合わせたエネルギー密度を計算。',meta:'J/cm² · J/点 · ms'},
+    {m:'pbm',num:'05 · PBM',label:'PBM',name:'臨床光生体調整',desc:'適応症ごとの正確な線量 — ヘルペス、抜歯後感染、知覚異常、粘膜炎。LED/ダイオードとチップに応じたカスタム計算。',meta:'LED · ダイオード · LLLT · PDT'}
   ],
   demoEye:'ライブデモ',
   demoH:'実際の相談。',
@@ -966,7 +1098,7 @@ ja:{
   howH:'質問から処方まで3ステップ。',
   howSub:'すべての症例が同じフロー。30秒以内。',
   howSteps:[
-    ['01','モジュールを選ぶ','4つのボタン：機器・プロトコル・検証・計算機。決断は1つだけ。','› PROTOCOLS'],
+    ['01','モジュールを選ぶ','5つのボタン：機器・プロトコル・検証・計算機・PBM。決断は1つだけ。','› PROTOCOLS'],
     ['02','タップまたは記述','処置をタップまたは入力。文脈が不足すればAIが機器と症例を確認。','› 歯周炎 · 980 nm'],
     ['03','プロトコル受領','パラメータ・技法・引用付き参考文献。印刷もカルテ貼付も可。','› 1.5 W · CW · 60 s']
   ],
@@ -984,13 +1116,19 @@ ja:{
   demoSend:'送信',
   prEye:'1日あたりの料金',
   prH:'ダイヤモンドバー1本より安い — 1日あたり。',
-  prSub:'Proプランは月額請求ですが、1件の解決が一日以上の価値を生むため、1日あたりのコストで考えています。',
+  prSub:'プランは月額または年額（2ヶ月無料付き）で請求されます。1件の解決が1日以上の価値を生むため、1日あたりのコストで考えています。',
   curMx:'メキシコ · MXN',
   curUs:'国際 · USD',
+  intMo:'月額',
+  intYr:'年額',
+  intSave:'2ヶ月無料',
+  savingsLabel:'2ヶ月無料を含む',
+  notePbm:'<strong>PBMは別売です。</strong> ProプランにはPBMモジュールは含まれません。PBMをご利用の場合は <strong>PBMスタンドアロン</strong> プラン（PBMのみ）または <strong>Elite</strong> プラン（PBMを含む全モジュール）をご選択ください。',
   plans:[
-    {key:'free', eye:'無料プラン', name:'Free',  desc:'LaserRxを体験するための1回のフルコンサルト — クレジットカード不要。', on:['1回のAI相談','機器ライブラリのプレビュー'], off:['線量計算機','エビデンス引用'], cta:'無料で試す', fine:'カード不要', href:'CHAT'},
-    {key:'pro',  eye:'最も人気', badge:'POPULAR', name:'Pro', desc:'月100回 — どのレーザー診療にも十分。',  on:['月100回の相談','完全な機器ライブラリ','PBM計算機','エビデンス引用','パラメータ検証'], off:[], cta:'Proに登録', fine:'いつでもキャンセル', href:'PRO', feat:true},
-    {key:'elite',eye:'フルアクセス', name:'Elite', desc:'無制限の相談 + 大量診療向け優先サポート。', on:['無制限の相談','Proのすべて','早期アクセス','専用サポート'], off:[], cta:'Eliteに登録', fine:'いつでもキャンセル', href:'ELITE'}
+    {key:'free', eye:'無料プラン', name:'Free',  desc:'LaserRxを体験するための1回のフルコンサルト — クレジットカード不要。', on:['1回のAI相談','機器ライブラリのプレビュー'], off:['線量計算機','PBMモジュール','エビデンス引用'], cta:'無料で試す', fine:'カード不要', href:'CHAT'},
+    {key:'pro',  eye:'最も人気', badge:'POPULAR', name:'Pro', desc:'月100回 — どのレーザー診療にも十分。',  on:['月100回の相談','Devices · Protocols · Validate · Calculator','エビデンス引用','パラメータ検証'], off:['PBMモジュール（別売）'], cta:'Proに登録', fine:'いつでもキャンセル', href:'PRO', feat:true},
+    {key:'pbm', eye:'スタンドアロン', name:'PBM', desc:'PBMモジュールのみ — 光生体調整の線量とプロトコル。LED/ダイオード療法用。', on:['月100回のPBM相談','PBMモジュール完全版','線量計算 (J/cm²)','適応症別プロトコル'], off:['Protocols · Devices · Validate · Calculator'], cta:'PBMに登録', fine:'いつでもキャンセル', href:'PBM'},
+    {key:'elite',eye:'フルアクセス', name:'Elite', desc:'無制限の相談 + PBMを含む全モジュール。大量診療のクリニック向け。', on:['無制限の相談','Devices · Protocols · Validate · Calculator','PBMモジュール込み','早期アクセス','専用サポート'], highlightIdx:2, off:[], cta:'Eliteに登録', fine:'いつでもキャンセル', href:'ELITE'}
   ],
   prDay:'/日',
   prFact:'請求',
@@ -1033,14 +1171,15 @@ ko:{
   videoEye:'30초로 확인',
   videoH:'LaserRx 실제 사용.',
   videoSub:'실제 진료 — 질문부터 검증된 프로토콜까지.',
-  modEye:'네 가지 모듈',
+  modEye:'다섯 가지 모듈',
   modH:'모듈별 임상 질문.',
   modSub:'각 모듈은 서로 다른 진료현장 결정에 최적화 — 일반 AI 아님.',
   mods:[
     {m:'devices',num:'01 · DEVICES',label:'기기',name:'당신의 레이저, 그 적응증',desc:'30+ 브랜드와 20+ 파장에서 검색 — 또는 장비 사진을 올리면 어떤 팁으로 어떤 케이스에 쓸 수 있는지 알려드립니다.',meta:'다이오드 · Nd:YAG · Er:YAG · Er,Cr:YSGG'},
-    {m:'protocols',num:'02 · PROTOCOLS',label:'프로토콜',name:'단계별 파라미터',desc:'케이스를 일반 언어로 설명하면 구조화된 프로토콜을 반환.',meta:'엔도 · 페리오 · 임플란트 · PBM'},
+    {m:'protocols',num:'02 · PROTOCOLS',label:'프로토콜',name:'단계별 파라미터',desc:'케이스를 일반 언어로 설명하면 구조화된 프로토콜을 반환.',meta:'엔도 · 페리오 · 임플란트 · 외과'},
     {m:'validate',num:'03 · VALIDATE',label:'검증',name:'지금 하려는 게 안전한가?',desc:'레이저 화면 사진을 올리면 발사 전 파라미터·선량·금기사항을 문헌에 대조해 점검합니다.',meta:'발사 전 검증'},
-    {m:'calculator',num:'04 · CALCULATOR',label:'계산기',name:'플루언스, 에너지, 시간',desc:'기기, 스팟 크기, 적응증에 맞춘 PBM 에너지 밀도.',meta:'J/cm² · J/점 · ms'}
+    {m:'calculator',num:'04 · CALCULATOR',label:'계산기',name:'플루언스, 에너지, 시간',desc:'기기, 스팟 크기, 적응증에 맞춘 에너지 밀도.',meta:'J/cm² · J/점 · ms'},
+    {m:'pbm',num:'05 · PBM',label:'PBM',name:'임상 광생체조절',desc:'적응증별 정확한 용량 — 헤르페스, 발치와염, 감각이상, 점막염. LED/다이오드 및 팁에 따른 맞춤 계산.',meta:'LED · 다이오드 · LLLT · PDT'}
   ],
   demoEye:'라이브 데모',
   demoH:'실제 상담.',
@@ -1049,7 +1188,7 @@ ko:{
   howH:'질문에서 처방까지 3단계.',
   howSub:'모든 임상 케이스가 같은 흐름. 30초 이내.',
   howSteps:[
-    ['01','모듈 선택','4개 버튼: 장비·프로토콜·검증·계산기. 한 번의 결정.','› PROTOCOLS'],
+    ['01','모듈 선택','5개 버튼: 장비·프로토콜·검증·계산기·PBM. 한 번의 결정.','› PROTOCOLS'],
     ['02','탭 또는 입력','시술을 탭하거나 입력. 문맥이 부족하면 AI가 장비와 케이스를 확인합니다.','› 치주염 · 980 nm'],
     ['03','프로토콜 수령','파라미터·기법·인용 참고문헌. 출력 또는 차트 붙여넣기 가능.','› 1.5 W · CW · 60 s']
   ],
@@ -1067,13 +1206,19 @@ ko:{
   demoSend:'전송',
   prEye:'일 단위 가격',
   prH:'다이아몬드 버 한 개보다 저렴 — 하루 기준.',
-  prSub:'Pro 플랜은 월 단위로 청구하지만, 한 건의 임상 해결이 하루보다 값지기 때문에 일 단위 비용으로 생각합니다.',
+  prSub:'요금제는 월 또는 연 단위(2개월 무료)로 청구됩니다. 한 건의 임상 해결이 하루보다 값지기 때문에 일 단위 비용으로 생각합니다.',
   curMx:'멕시코 · MXN',
   curUs:'국제 · USD',
+  intMo:'월간',
+  intYr:'연간',
+  intSave:'2개월 무료',
+  savingsLabel:'2개월 무료 포함',
+  notePbm:'<strong>PBM은 별도 판매됩니다.</strong> Pro 플랜에는 PBM 모듈이 포함되지 않습니다. PBM 이용을 원하시면 <strong>PBM standalone</strong> 플랜(PBM 전용) 또는 <strong>Elite</strong> 플랜(PBM 포함 모든 모듈)을 선택하세요.',
   plans:[
-    {key:'free', eye:'무료', name:'Free',  desc:'LaserRx를 경험할 1회 전체 상담 — 신용카드 불필요.', on:['1회 AI 상담','기기 라이브러리 미리보기'], off:['선량 계산기','근거 인용'], cta:'무료로 시도', fine:'카드 불필요', href:'CHAT'},
-    {key:'pro',  eye:'가장 인기', badge:'POPULAR', name:'Pro', desc:'월 100회 — 활발한 레이저 진료에 충분.', on:['월 100회 상담','전체 기기 라이브러리','PBM 계산기','근거 인용','파라미터 검증'], off:[], cta:'Pro 구독', fine:'언제든 해지', href:'PRO', feat:true},
-    {key:'elite',eye:'전체 액세스', name:'Elite', desc:'무제한 상담 + 고용량 클리닉을 위한 직통 지원.', on:['무제한 상담','Pro의 모든 기능','얼리 액세스','전용 지원 채널'], off:[], cta:'Elite 구독', fine:'언제든 해지', href:'ELITE'}
+    {key:'free', eye:'무료', name:'Free',  desc:'LaserRx를 경험할 1회 전체 상담 — 신용카드 불필요.', on:['1회 AI 상담','기기 라이브러리 미리보기'], off:['선량 계산기','PBM 모듈','근거 인용'], cta:'무료로 시도', fine:'카드 불필요', href:'CHAT'},
+    {key:'pro',  eye:'가장 인기', badge:'POPULAR', name:'Pro', desc:'월 100회 — 활발한 레이저 진료에 충분.', on:['월 100회 상담','Devices · Protocols · Validate · Calculator','근거 인용','파라미터 검증'], off:['PBM 모듈 (별도 구매)'], cta:'Pro 구독', fine:'언제든 해지', href:'PRO', feat:true},
+    {key:'pbm', eye:'스탠드얼론', name:'PBM', desc:'PBM 모듈만 — 광생체조절 용량과 프로토콜. LED/다이오드 치료용.', on:['월 100회 PBM 상담','전체 PBM 모듈','용량 계산 (J/cm²)','적응증별 프로토콜'], off:['Protocols · Devices · Validate · Calculator'], cta:'PBM 구독', fine:'언제든 해지', href:'PBM'},
+    {key:'elite',eye:'전체 액세스', name:'Elite', desc:'무제한 상담 + PBM 포함 모든 모듈. 고용량 클리닉용.', on:['무제한 상담','Devices · Protocols · Validate · Calculator','PBM 모듈 포함','얼리 액세스','전용 지원 채널'], highlightIdx:2, off:[], cta:'Elite 구독', fine:'언제든 해지', href:'ELITE'}
   ],
   prDay:'/일',
   prFact:'청구',
@@ -1108,6 +1253,7 @@ function xx(){return '<svg width="14" height="14" viewBox="0 0 24 24" fill="none
 
 var lang='es';
 var currency='usd';
+var interval='yr';  /* default anual (incita al pago anual con 2 meses gratis) */
 
 function setL(l){
   lang=l;
@@ -1123,27 +1269,54 @@ function setCurrency(c){
   renderPlans();
 }
 
+function setPeriod(i){
+  interval=i;
+  document.querySelectorAll('.int-btn').forEach(function(b){b.classList.toggle('on',b.dataset.i===i);});
+  renderPlans();
+}
+
 function planHref(key){
-  if(key==='pro')   return currency==='mxn'?PRO_MXN:PRO_USD;
-  if(key==='elite') return currency==='mxn'?ELITE_MXN:ELITE_USD;
+  if(key==='pro'){
+    if(interval==='yr') return currency==='mxn'?PRO_MXN_YR:PRO_USD_YR;
+    return currency==='mxn'?PRO_MXN:PRO_USD;
+  }
+  if(key==='elite'){
+    if(interval==='yr') return currency==='mxn'?ELITE_MXN_YR:ELITE_USD_YR;
+    return currency==='mxn'?ELITE_MXN:ELITE_USD;
+  }
+  if(key==='pbm'){
+    if(interval==='yr') return currency==='mxn'?PBM_MXN_YR:PBM_USD_YR;
+    return currency==='mxn'?PBM_MXN_MO:PBM_USD_MO;
+  }
   return CHAT;
 }
 
 function renderPlans(){
   var t=T[lang];
-  var p=PRICING[currency];
+  var p=PRICING[currency][interval];
   var grid=document.getElementById('plansGrid');
   if(!grid) return;
   grid.innerHTML=t.plans.map(function(plan){
     var pr=p[plan.key];
-    var cur=p.sym;
-    var num=pr.day.replace(p.sym,'');
-    var on=plan.on.map(function(x){return '<div class="feat-row">'+ck()+'<span>'+x+'</span></div>';}).join('');
+    var cur=PRICING[currency].sym;
+    var num=pr.day.replace(cur,'');
+    var on=plan.on.map(function(x, idx){
+      var hl=(plan.highlightIdx!==undefined && idx===plan.highlightIdx)?' hl':'';
+      return '<div class="feat-row'+hl+'">'+ck()+'<span>'+x+'</span></div>';
+    }).join('');
     var off=plan.off.map(function(x){return '<div class="feat-row off">'+xx()+'<span>'+x+'</span></div>';}).join('');
     var eye=plan.badge?'<div class="plan-eye"><span class="badge">'+plan.badge+'</span></div>':'<div class="plan-eye">'+plan.eye+'</div>';
     var href=planHref(plan.key);
     var ext=href.indexOf('http')===0?' target="_blank" rel="noopener"':'';
-    return '<div class="plan'+(plan.feat?' feat':'')+'">'
+    var cls='plan';
+    if(plan.feat) cls+=' feat';
+    if(plan.key==='pbm') cls+=' pbm';
+    /* Savings strip: solo en planes pagados + anual */
+    var savings='';
+    if(interval==='yr' && plan.key!=='free'){
+      savings='<div class="savings-strip"><span class="ic">✓</span><span>'+t.savingsLabel+'</span></div>';
+    }
+    return '<div class="'+cls+'">'
       + eye
       + '<div class="plan-name">'+plan.name+'</div>'
       + '<div class="price-block">'
@@ -1154,6 +1327,7 @@ function renderPlans(){
       +   '</div>'
       + '</div>'
       + '<div class="price-sub"><span class="x">'+t.prFact+'</span><span>'+pr.bill+'</span></div>'
+      + savings
       + '<div class="plan-desc">'+plan.desc+'</div>'
       + '<div class="feats">'+on+off+'</div>'
       + '<a class="plan-cta" href="'+href+'"'+ext+'>'+plan.cta+'</a>'
@@ -1315,10 +1489,17 @@ function render(){
   +     '<div class="sec-h">'+t.prH+'</div>'
   +     '<div class="sec-sub">'+t.prSub+'</div>'
   +   '</div>'
-  +   '<div class="cur-toggle">'
-  +     '<button class="cur-btn'+(currency==='mxn'?' on':'')+'" data-c="mxn" onclick="setCurrency(\'mxn\')"><span class="flag">🇲🇽</span> '+t.curMx+'</button>'
-  +     '<button class="cur-btn'+(currency==='usd'?' on':'')+'" data-c="usd" onclick="setCurrency(\'usd\')"><span class="flag">🌐</span> '+t.curUs+'</button>'
+  +   '<div class="toggles-row">'
+  +     '<div class="cur-toggle">'
+  +       '<button class="cur-btn'+(currency==='mxn'?' on':'')+'" data-c="mxn" onclick="setCurrency(\'mxn\')"><span class="flag">🇲🇽</span> '+t.curMx+'</button>'
+  +       '<button class="cur-btn'+(currency==='usd'?' on':'')+'" data-c="usd" onclick="setCurrency(\'usd\')"><span class="flag">🌐</span> '+t.curUs+'</button>'
+  +     '</div>'
+  +     '<div class="int-toggle">'
+  +       '<button class="int-btn'+(interval==='mo'?' on':'')+'" data-i="mo" onclick="setPeriod(\'mo\')">'+t.intMo+'</button>'
+  +       '<button class="int-btn'+(interval==='yr'?' on':'')+'" data-i="yr" onclick="setPeriod(\'yr\')">'+t.intYr+' <span class="save">'+t.intSave+'</span></button>'
+  +     '</div>'
   +   '</div>'
+  +   '<div class="note-pbm"><span class="dot"></span><span>'+t.notePbm+'</span></div>'
   +   '<div class="plans" id="plansGrid"></div>'
   + '</section>'
 
