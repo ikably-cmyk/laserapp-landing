@@ -697,6 +697,30 @@ footer.bot{padding:48px 0 32px;margin-top:64px;border-top:1px solid var(--hairli
   .cf-actions{flex-direction:column;align-items:stretch;gap:12px}
   .cf-submit{width:100%;justify-content:center;text-align:center}
 }
+/* ===== LaserRx Academy — landing section styles (additive, acad-* prefix) ===== */
+#academy .acad-band{
+  background:var(--white);border:1px solid var(--hairline);border-top:3px solid var(--amber);
+  border-radius:3px;padding:32px;display:grid;grid-template-columns:1.35fr 1fr;gap:36px;align-items:center;
+}
+.acad-name{font-family:var(--sans);font-size:24px;font-weight:600;color:var(--navy);letter-spacing:-0.02em;line-height:1.2}
+.acad-tag{margin-top:10px;font-size:13.5px;line-height:1.55;color:var(--steel)}
+.acad-feats{margin-top:18px;display:flex;flex-direction:column;gap:9px}
+.acad-feat{display:flex;align-items:flex-start;gap:9px;font-size:12.5px;line-height:1.4;color:var(--navy)}
+.acad-feat svg{flex-shrink:0;margin-top:2px;color:var(--amberDeep)}
+.acad-right{display:flex;flex-direction:column;align-items:flex-start;border-left:1px solid var(--hairlineSoft);padding-left:32px}
+.acad-price{font-family:var(--sans);font-size:56px;font-weight:600;line-height:.92;letter-spacing:-0.04em;color:var(--navy)}
+.acad-cur{font-size:20px;font-weight:500;vertical-align:top;color:var(--steel);margin-right:2px;letter-spacing:-0.02em}
+.acad-unit{margin-top:6px;font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--steel)}
+.acad-bill{margin-top:14px;padding:9px 11px;background:var(--paper);border:1px dashed var(--hairline);border-radius:3px;font-family:var(--mono);font-size:10px;color:var(--navy);letter-spacing:0.02em;display:flex;gap:8px;align-items:center}
+.acad-bill .x{color:var(--amberDeep);text-transform:uppercase;letter-spacing:0.14em;font-size:8.5px}
+.acad-cta{margin-top:18px;display:inline-block;text-align:center;padding:13px 26px;border-radius:3px;font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:-0.005em;background:var(--amber);border:1px solid var(--amber);color:var(--ink);text-decoration:none;transition:background .12s,border-color .12s}
+.acad-cta:hover{background:var(--amberDeep);border-color:var(--amberDeep)}
+.acad-fine{margin-top:10px;font-family:var(--mono);font-size:8.5px;color:var(--steel);letter-spacing:0.1em;text-transform:uppercase}
+@media(max-width:720px){
+  #academy .acad-band{grid-template-columns:1fr;gap:24px;padding:24px}
+  .acad-right{border-left:none;border-top:1px solid var(--hairlineSoft);padding-left:0;padding-top:24px;align-items:stretch}
+  .acad-price{font-size:48px}
+}
 </style>
 </head>
 <body>
@@ -804,6 +828,127 @@ var PRICING = {
     }
   }
 };
+
+/* ============================================================
+   LaserRx Academy — landing add-on (STANDALONE, additive)
+   Self-contained: own Payment Links, pricing, i18n (5 langs),
+   href resolver and render fn. Reuses global `currency`,
+   `interval`, `lang` state + ck() icon helper.
+   ============================================================ */
+
+/* Academy live Payment Links (Stripe) */
+var ACADEMY_USD_MO = 'https://buy.stripe.com/fZu7sD4d162Sd2i5YXdIA11';
+var ACADEMY_MXN_MO = 'https://buy.stripe.com/5kQ8wH6l92QGaUa2MLdIA12';
+var ACADEMY_USD_YR = 'https://buy.stripe.com/7sY3cndNBbnc6DUafddIA13';
+var ACADEMY_MXN_YR = 'https://buy.stripe.com/6oU6ozdNBdvke6m5YXdIA14';
+
+/* Prices — single source of truth (numbers only; words live in ACADEMY_I18N) */
+var ACADEMY_PRICING = {
+  usd:{ sym:'$', mo:'14.99', yr:'99'    },
+  mxn:{ sym:'$', mo:'199',   yr:'1,499' }
+};
+
+function academyHref(){
+  if(currency==='mxn') return interval==='yr' ? ACADEMY_MXN_YR : ACADEMY_MXN_MO;
+  return interval==='yr' ? ACADEMY_USD_YR : ACADEMY_USD_MO;
+}
+
+/* Academy copy — all 5 languages (self-contained i18n) */
+var ACADEMY_I18N = {
+  es:{
+    eye:'EDUCACIÓN CLÍNICA', h:'LaserRx Academy',
+    sub:'Un módulo de aprendizaje independiente, con su propia suscripción — separado de tu plan y créditos de consulta.',
+    name:'Desbloquea todas las lecciones de Academy',
+    tag:'Lecciones clínicas en video con tarjetas interactivas. Todas las actuales y las que vienen.',
+    feats:['Todas las lecciones, presentes y futuras','Video clínico + tarjetas interactivas','Independiente de tu plan y créditos'],
+    cta:'Obtener acceso a Academy', fine:'Suscripción independiente · cancela cuando quieras',
+    billTag:'COBRO',
+    unit:{ usd:{mo:'USD / mes', yr:'USD / año'}, mxn:{mo:'MXN / mes', yr:'MXN / año'} },
+    bill:{ usd:{mo:'Facturado mensual', yr:'Facturado anual · ahorra ~45%'},
+           mxn:{mo:'Facturado mensual', yr:'Facturado anual · ahorra ~37%'} }
+  },
+  en:{
+    eye:'CLINICAL EDUCATION', h:'LaserRx Academy',
+    sub:'A standalone learning module with its own subscription — separate from your consult plan and credits.',
+    name:'Unlock every Academy lesson',
+    tag:'Clinical video lessons with interactive cards. Every current lesson and all future ones.',
+    feats:['Every lesson, current and future','Clinical video + interactive cards','Independent from your plan and credits'],
+    cta:'Get Academy access', fine:'Standalone subscription · cancel anytime',
+    billTag:'BILLING',
+    unit:{ usd:{mo:'USD / month', yr:'USD / year'}, mxn:{mo:'MXN / month', yr:'MXN / year'} },
+    bill:{ usd:{mo:'Billed monthly', yr:'Billed yearly · save ~45%'},
+           mxn:{mo:'Billed monthly', yr:'Billed yearly · save ~37%'} }
+  },
+  pt:{
+    eye:'EDUCAÇÃO CLÍNICA', h:'LaserRx Academy',
+    sub:'Um módulo de aprendizado independente, com sua própria assinatura — separado do seu plano e créditos de consulta.',
+    name:'Desbloqueie todas as lições da Academy',
+    tag:'Lições clínicas em vídeo com cartões interativos. Todas as atuais e as futuras.',
+    feats:['Todas as lições, atuais e futuras','Vídeo clínico + cartões interativos','Independente do seu plano e créditos'],
+    cta:'Obter acesso à Academy', fine:'Assinatura independente · cancele quando quiser',
+    billTag:'COBRANÇA',
+    unit:{ usd:{mo:'USD / mês', yr:'USD / ano'}, mxn:{mo:'MXN / mês', yr:'MXN / ano'} },
+    bill:{ usd:{mo:'Cobrado mensalmente', yr:'Cobrado anualmente · economize ~45%'},
+           mxn:{mo:'Cobrado mensalmente', yr:'Cobrado anualmente · economize ~37%'} }
+  },
+  ja:{
+    eye:'臨床教育', h:'LaserRx Academy',
+    sub:'独立した学習モジュール。専用のサブスクリプションで、コンサルトのプランやクレジットとは別です。',
+    name:'すべてのAcademyレッスンを解除',
+    tag:'インタラクティブカード付きの臨床ビデオレッスン。現在および今後のすべてを含みます。',
+    feats:['現在および今後のすべてのレッスン','臨床ビデオ + インタラクティブカード','プランやクレジットとは独立'],
+    cta:'Academyにアクセス', fine:'独立サブスクリプション · いつでも解約可能',
+    billTag:'請求',
+    unit:{ usd:{mo:'USD / 月', yr:'USD / 年'}, mxn:{mo:'MXN / 月', yr:'MXN / 年'} },
+    bill:{ usd:{mo:'毎月請求', yr:'年額請求 · 約45%お得'},
+           mxn:{mo:'毎月請求', yr:'年額請求 · 約37%お得'} }
+  },
+  ko:{
+    eye:'임상 교육', h:'LaserRx Academy',
+    sub:'독립형 학습 모듈로 별도 구독이 필요하며, 상담 플랜 및 크레딧과 분리되어 있습니다.',
+    name:'모든 Academy 레슨 잠금 해제',
+    tag:'인터랙티브 카드가 포함된 임상 영상 레슨. 현재와 향후 모든 레슨 포함.',
+    feats:['현재 및 향후 모든 레슨','임상 영상 + 인터랙티브 카드','플랜 및 크레딧과 독립적'],
+    cta:'Academy 이용하기', fine:'독립형 구독 · 언제든 해지 가능',
+    billTag:'청구',
+    unit:{ usd:{mo:'USD / 월', yr:'USD / 년'}, mxn:{mo:'MXN / 월', yr:'MXN / 년'} },
+    bill:{ usd:{mo:'월별 청구', yr:'연간 청구 · 약 45% 절약'},
+           mxn:{mo:'월별 청구', yr:'연간 청구 · 약 37% 절약'} }
+  }
+};
+
+function renderAcademy(){
+  var a=ACADEMY_I18N[lang]; if(!a) return;
+  var card=document.getElementById('academyCard'); if(!card) return;
+  var pr=ACADEMY_PRICING[currency];
+  var amount=pr[interval];
+  var sym=pr.sym;
+  var unit=a.unit[currency][interval];
+  var bill=a.bill[currency][interval];
+  var feats=a.feats.map(function(f){
+    return '<div class="acad-feat">'+ck()+'<span>'+f+'</span></div>';
+  }).join('');
+  card.innerHTML =
+    '<div class="sec-head">'
+  +   '<div class="sec-eye">'+a.eye+'</div>'
+  +   '<div class="sec-h">'+a.h+'</div>'
+  +   '<div class="sec-sub">'+a.sub+'</div>'
+  + '</div>'
+  + '<div class="acad-band">'
+  +   '<div class="acad-left">'
+  +     '<div class="acad-name">'+a.name+'</div>'
+  +     '<div class="acad-tag">'+a.tag+'</div>'
+  +     '<div class="acad-feats">'+feats+'</div>'
+  +   '</div>'
+  +   '<div class="acad-right">'
+  +     '<div class="acad-price"><span class="acad-cur">'+sym+'</span>'+amount+'</div>'
+  +     '<div class="acad-unit">'+unit+'</div>'
+  +     '<div class="acad-bill"><span class="x">'+a.billTag+'</span><span>'+bill+'</span></div>'
+  +     '<a class="acad-cta" href="'+academyHref()+'" target="_blank" rel="noopener">'+a.cta+'</a>'
+  +     '<div class="acad-fine">'+a.fine+'</div>'
+  +   '</div>'
+  + '</div>';
+}
 
 /* ─── Translations ─── */
 var T = {
@@ -1267,12 +1412,14 @@ function setCurrency(c){
   currency=c;
   document.querySelectorAll('.cur-btn').forEach(function(b){b.classList.toggle('on',b.dataset.c===c);});
   renderPlans();
+  renderAcademy();
 }
 
 function setPeriod(i){
   interval=i;
   document.querySelectorAll('.int-btn').forEach(function(b){b.classList.toggle('on',b.dataset.i===i);});
   renderPlans();
+  renderAcademy();
 }
 
 function planHref(key){
@@ -1503,6 +1650,8 @@ function render(){
   +   '<div class="plans" id="plansGrid"></div>'
   + '</section>'
 
+  + '<section id="academy"><div id="academyCard"></div></section>'
+
   + '<section id="testimonials">'
   +   '<div class="sec-head">'
   +     '<div class="sec-eye">'+t.teEye+'</div>'
@@ -1562,6 +1711,7 @@ function render(){
 
   document.getElementById('app').innerHTML=html;
   renderPlans();
+  renderAcademy();
 }
 
 /* ─── Tour ─── */
