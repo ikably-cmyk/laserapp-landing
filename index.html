@@ -159,7 +159,7 @@ section{padding:80px 0 0}
 .sec-sub{font-size:15px;line-height:1.6;color:var(--steel);max-width:560px}
 
 /* ─── MODULES ─── */
-.mods{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.mods{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .mod{
   background:var(--white);border:1px solid var(--hairline);
   border-left:3px solid var(--steel);
@@ -172,6 +172,12 @@ section{padding:80px 0 0}
 .mod[data-m="validate"]  {border-left-color:var(--validate)}
 .mod[data-m="calculator"]{border-left-color:var(--calculator)}
 .mod[data-m="pbm"]       {border-left-color:var(--pbm)}
+.mod[data-m="academy"]   {border-left-color:var(--amberDeep)}
+a.mod{color:inherit;text-decoration:none}
+.mod[data-m="academy"]{
+  background:linear-gradient(180deg,rgba(182,136,82,.06),rgba(182,136,82,0) 62%),var(--white);
+}
+.mod[data-m="academy"]:hover{border-color:var(--amberDeep)}
 .mod-num{
   font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.14em;
   color:var(--steel);text-transform:uppercase;display:flex;justify-content:space-between;
@@ -181,12 +187,22 @@ section{padding:80px 0 0}
 .mod[data-m="validate"] .mod-num .label  {color:var(--validate)}
 .mod[data-m="calculator"] .mod-num .label{color:var(--calculator)}
 .mod[data-m="pbm"] .mod-num .label       {color:var(--pbm)}
+.mod[data-m="academy"] .mod-num .label   {color:var(--amberDeep)}
 .mod-name{font-size:17px;font-weight:600;color:var(--navy);letter-spacing:-0.01em;margin-top:4px}
 .mod-desc{font-size:12.5px;line-height:1.55;color:var(--steel);flex:1}
 .mod-meta{
   margin-top:10px;padding-top:12px;border-top:1px dashed var(--hairline);
   font-family:var(--mono);font-size:10px;color:var(--navy);letter-spacing:0.04em;
 }
+.mod[data-m="academy"] .mod-meta{color:var(--amberDeep);border-top-color:rgba(182,136,82,.38)}
+/* pill EN ONLY — seccion Academy */
+.acad-en{
+  display:inline-block;vertical-align:middle;margin-left:10px;
+  padding:3px 7px;border-radius:2px;
+  background:var(--amberDeep);color:var(--white);
+  font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:0.12em;
+}
+.acad-video{margin-bottom:26px}
 
 /* ─── VIDEO ─── */
 .video-frame{
@@ -842,6 +858,10 @@ var ACADEMY_MXN_MO = 'https://buy.stripe.com/5kQ8wH6l92QGaUa2MLdIA12';
 var ACADEMY_USD_YR = 'https://buy.stripe.com/7sY3cndNBbnc6DUafddIA13';
 var ACADEMY_MXN_YR = 'https://buy.stripe.com/6oU6ozdNBdvke6m5YXdIA14';
 
+/* Academy trailer — YouTube ID. Deja '' para ocultar el marco por completo. */
+var ACADEMY_VIDEO     = 'XzhS5SSGiRg';
+var ACADEMY_VIDEO_LEN = '00:47';
+
 /* Prices — single source of truth (numbers only; words live in ACADEMY_I18N) */
 var ACADEMY_PRICING = {
   usd:{ sym:'$', mo:'14.99', yr:'99'    },
@@ -862,6 +882,7 @@ var ACADEMY_I18N = {
     tag:'Lecciones clínicas en video con tarjetas interactivas. Todas las actuales y las que vienen.',
     feats:['Todas las lecciones, presentes y futuras','Video clínico + tarjetas interactivas','Independiente de tu plan y créditos'],
     cta:'Obtener acceso a Academy', fine:'Suscripción independiente · cancela cuando quieras',
+    enPill:'EN ONLY', enNote:'Todas las lecciones son exclusivamente en inglés',
     billTag:'COBRO',
     unit:{ usd:{mo:'USD / mes', yr:'USD / año'}, mxn:{mo:'MXN / mes', yr:'MXN / año'} },
     bill:{ usd:{mo:'Facturado mensual', yr:'Facturado anual · ahorra ~45%'},
@@ -874,6 +895,7 @@ var ACADEMY_I18N = {
     tag:'Clinical video lessons with interactive cards. Every current lesson and all future ones.',
     feats:['Every lesson, current and future','Clinical video + interactive cards','Independent from your plan and credits'],
     cta:'Get Academy access', fine:'Standalone subscription · cancel anytime',
+    enPill:'EN ONLY', enNote:'All lessons are in English only',
     billTag:'BILLING',
     unit:{ usd:{mo:'USD / month', yr:'USD / year'}, mxn:{mo:'MXN / month', yr:'MXN / year'} },
     bill:{ usd:{mo:'Billed monthly', yr:'Billed yearly · save ~45%'},
@@ -886,6 +908,7 @@ var ACADEMY_I18N = {
     tag:'Lições clínicas em vídeo com cartões interativos. Todas as atuais e as futuras.',
     feats:['Todas as lições, atuais e futuras','Vídeo clínico + cartões interativos','Independente do seu plano e créditos'],
     cta:'Obter acesso à Academy', fine:'Assinatura independente · cancele quando quiser',
+    enPill:'EN ONLY', enNote:'Todas as lições são exclusivamente em inglês',
     billTag:'COBRANÇA',
     unit:{ usd:{mo:'USD / mês', yr:'USD / ano'}, mxn:{mo:'MXN / mês', yr:'MXN / ano'} },
     bill:{ usd:{mo:'Cobrado mensalmente', yr:'Cobrado anualmente · economize ~45%'},
@@ -898,6 +921,7 @@ var ACADEMY_I18N = {
     tag:'インタラクティブカード付きの臨床ビデオレッスン。現在および今後のすべてを含みます。',
     feats:['現在および今後のすべてのレッスン','臨床ビデオ + インタラクティブカード','プランやクレジットとは独立'],
     cta:'Academyにアクセス', fine:'独立サブスクリプション · いつでも解約可能',
+    enPill:'EN ONLY', enNote:'すべてのレッスンは英語のみです',
     billTag:'請求',
     unit:{ usd:{mo:'USD / 月', yr:'USD / 年'}, mxn:{mo:'MXN / 月', yr:'MXN / 年'} },
     bill:{ usd:{mo:'毎月請求', yr:'年額請求 · 約45%お得'},
@@ -910,6 +934,7 @@ var ACADEMY_I18N = {
     tag:'인터랙티브 카드가 포함된 임상 영상 레슨. 현재와 향후 모든 레슨 포함.',
     feats:['현재 및 향후 모든 레슨','임상 영상 + 인터랙티브 카드','플랜 및 크레딧과 독립적'],
     cta:'Academy 이용하기', fine:'독립형 구독 · 언제든 해지 가능',
+    enPill:'EN ONLY', enNote:'모든 레슨은 영어로만 제공됩니다',
     billTag:'청구',
     unit:{ usd:{mo:'USD / 월', yr:'USD / 년'}, mxn:{mo:'MXN / 월', yr:'MXN / 년'} },
     bill:{ usd:{mo:'월별 청구', yr:'연간 청구 · 약 45% 절약'},
@@ -928,12 +953,33 @@ function renderAcademy(){
   var feats=a.feats.map(function(f){
     return '<div class="acad-feat">'+ck()+'<span>'+f+'</span></div>';
   }).join('');
+  var vid = ACADEMY_VIDEO ?
+      '<div class="video-frame acad-video">'
+    +   '<div class="video-corner tl"></div>'
+    +   '<div class="video-corner tr"></div>'
+    +   '<div class="video-corner bl"></div>'
+    +   '<div class="video-corner br"></div>'
+    +   '<div class="video-bar">'
+    +     '<div class="video-bar-left">'
+    +       '<span class="video-bar-dot"></span>'
+    +       '<span class="video-bar-tag">LASERRX ACADEMY</span>'
+    +       '<span class="video-bar-pipe video-bar-tag-hide-mobile">|</span>'
+    +       '<span class="video-bar-tag-hide-mobile">EN · 1080p</span>'
+    +     '</div>'
+    +     '<div>'+ACADEMY_VIDEO_LEN+'</div>'
+    +   '</div>'
+    +   '<div class="video-aspect">'
+    +     '<iframe src="https://www.youtube-nocookie.com/embed/'+ACADEMY_VIDEO+'?rel=0&modestbranding=1&playsinline=1" title="LaserRx Academy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>'
+    +   '</div>'
+    + '</div>'
+    : '';
   card.innerHTML =
     '<div class="sec-head">'
   +   '<div class="sec-eye">'+a.eye+'</div>'
-  +   '<div class="sec-h">'+a.h+'</div>'
+  +   '<div class="sec-h">'+a.h+'<span class="acad-en">'+a.enPill+'</span></div>'
   +   '<div class="sec-sub">'+a.sub+'</div>'
   + '</div>'
+  + vid
   + '<div class="acad-band">'
   +   '<div class="acad-left">'
   +     '<div class="acad-name">'+a.name+'</div>'
@@ -945,7 +991,7 @@ function renderAcademy(){
   +     '<div class="acad-unit">'+unit+'</div>'
   +     '<div class="acad-bill"><span class="x">'+a.billTag+'</span><span>'+bill+'</span></div>'
   +     '<a class="acad-cta" href="'+academyHref()+'" target="_blank" rel="noopener">'+a.cta+'</a>'
-  +     '<div class="acad-fine">'+a.fine+'</div>'
+  +     '<div class="acad-fine">'+a.fine+' · '+a.enNote+'</div>'
   +   '</div>'
   + '</div>';
 }
@@ -976,7 +1022,8 @@ es:{
     {m:'protocols',num:'02 · PROTOCOLS',label:'PROTOCOLOS',name:'Parámetros paso a paso',desc:'Describe el caso en lenguaje natural. Recibe un protocolo estructurado: fase, potencia, modo, técnica.',meta:'Endo · Perio · Implantes · Cirugía'},
     {m:'validate',num:'03 · VALIDATE',label:'VALIDAR',name:'¿Es seguro lo que voy a hacer?',desc:'Sube una foto de la pantalla de tu láser y revisamos parámetros, dosis y contraindicaciones contra la literatura — antes de disparar.',meta:'Verificación pre-disparo'},
     {m:'calculator',num:'04 · CALCULATOR',label:'CALCULADORA',name:'Fluencia, energía, tiempo',desc:'Densidad de energía calculada para tu equipo, tamaño de spot e indicación. Sin hojas de cálculo.',meta:'J/cm² · J/punto · ms'},
-    {m:'pbm',num:'05 · PBM',label:'PBM',name:'Fotobiomodulación clínica',desc:'Dosis exacta por indicación — herpes, alveolitis, parestesia, mucositis. Cálculo personalizado según tu LED/diodo y tip.',meta:'LED · Diodo · LLLT · PDT'}
+    {m:'pbm',num:'05 · PBM',label:'PBM',name:'Fotobiomodulación clínica',desc:'Dosis exacta por indicación — herpes, alveolitis, parestesia, mucositis. Cálculo personalizado según tu LED/diodo y tip.',meta:'LED · Diodo · LLLT · PDT'},
+    {m:'academy',num:'06 · ACADEMY',label:'ACADEMIA',name:'Entiende tu láser, no solo lo operes',desc:'Lecciones clínicas en video con tarjetas interactivas. Un concepto a la vez, construido desde la literatura y desde lo que funciona en el sillón.',meta:'Solo en inglés · suscripción aparte'}
   ],
   demoEye:'Demo en vivo',
   demoH:'Una consulta real.',
@@ -1066,7 +1113,8 @@ en:{
     {m:'protocols',num:'02 · PROTOCOLS',label:'PROTOCOLS',name:'Step-by-step parameters',desc:'Describe the case in plain language. Get a structured protocol: phase, power, mode, technique.',meta:'Endo · Perio · Implants · Surgery'},
     {m:'validate',num:'03 · VALIDATE',label:'VALIDATE',name:'Is what I’m about to do safe?',desc:'Snap a photo of your laser screen and we check parameters, dose and contraindications against the literature — before you pull the trigger.',meta:'Pre-shot verification'},
     {m:'calculator',num:'04 · CALCULATOR',label:'CALCULATOR',name:'Fluence, energy, time',desc:'Energy density calculated for your device, spot size and indication. No spreadsheet needed.',meta:'J/cm² · J/spot · ms'},
-    {m:'pbm',num:'05 · PBM',label:'PBM',name:'Clinical photobiomodulation',desc:'Exact dose by indication — herpes, alveolitis, paresthesia, mucositis. Custom calculation based on your LED/diode and tip.',meta:'LED · Diode · LLLT · PDT'}
+    {m:'pbm',num:'05 · PBM',label:'PBM',name:'Clinical photobiomodulation',desc:'Exact dose by indication — herpes, alveolitis, paresthesia, mucositis. Custom calculation based on your LED/diode and tip.',meta:'LED · Diode · LLLT · PDT'},
+    {m:'academy',num:'06 · ACADEMY',label:'ACADEMY',name:'Understand your laser — not just operate it',desc:'Clinical video lessons with interactive cards. One concept at a time, built from the literature and from what actually works chairside.',meta:'English only · separate subscription'}
   ],
   demoEye:'Live demo',
   demoH:'A real consultation.',
@@ -1156,7 +1204,8 @@ pt:{
     {m:'protocols',num:'02 · PROTOCOLS',label:'PROTOCOLOS',name:'Parâmetros passo a passo',desc:'Descreva o caso em linguagem natural. Receba um protocolo estruturado: fase, potência, modo, técnica.',meta:'Endo · Perio · Implantes · Cirurgia'},
     {m:'validate',num:'03 · VALIDATE',label:'VALIDAR',name:'É seguro o que vou fazer?',desc:'Envie uma foto da tela do seu laser e checamos parâmetros, dose e contraindicações contra a literatura — antes de disparar.',meta:'Verificação pré-disparo'},
     {m:'calculator',num:'04 · CALCULATOR',label:'CALCULADORA',name:'Fluência, energia, tempo',desc:'Densidade de energia calculada para seu equipamento, tamanho do spot e indicação. Sem planilhas.',meta:'J/cm² · J/ponto · ms'},
-    {m:'pbm',num:'05 · PBM',label:'PBM',name:'Fotobiomodulação clínica',desc:'Dose exata por indicação — herpes, alveolite, parestesia, mucosite. Cálculo personalizado conforme seu LED/diodo e ponta.',meta:'LED · Diodo · LLLT · PDT'}
+    {m:'pbm',num:'05 · PBM',label:'PBM',name:'Fotobiomodulação clínica',desc:'Dose exata por indicação — herpes, alveolite, parestesia, mucosite. Cálculo personalizado conforme seu LED/diodo e ponta.',meta:'LED · Diodo · LLLT · PDT'},
+    {m:'academy',num:'06 · ACADEMY',label:'ACADEMIA',name:'Entenda seu laser, não apenas opere',desc:'Lições clínicas em vídeo com cartões interativos. Um conceito por vez, construído a partir da literatura e do que funciona na cadeira.',meta:'Somente em inglês · assinatura à parte'}
   ],
   howEye:'Como funciona',
   howH:'Da pergunta ao protocolo em três passos.',
@@ -1246,7 +1295,8 @@ ja:{
     {m:'protocols',num:'02 · PROTOCOLS',label:'プロトコル',name:'段階的なパラメータ',desc:'平易な言葉でケースを説明 — 構造化されたプロトコルが返ります。',meta:'エンド · ペリオ · インプラント · 外科'},
     {m:'validate',num:'03 · VALIDATE',label:'検証',name:'安全に行えるか？',desc:'レーザー画面の写真をアップロードすると、発射前にパラメータ・線量・禁忌を文献に照らして確認します。',meta:'発射前検証'},
     {m:'calculator',num:'04 · CALCULATOR',label:'計算機',name:'フルエンス、エネルギー、時間',desc:'機器、スポット、適応に合わせたエネルギー密度を計算。',meta:'J/cm² · J/点 · ms'},
-    {m:'pbm',num:'05 · PBM',label:'PBM',name:'臨床光生体調整',desc:'適応症ごとの正確な線量 — ヘルペス、抜歯後感染、知覚異常、粘膜炎。LED/ダイオードとチップに応じたカスタム計算。',meta:'LED · ダイオード · LLLT · PDT'}
+    {m:'pbm',num:'05 · PBM',label:'PBM',name:'臨床光生体調整',desc:'適応症ごとの正確な線量 — ヘルペス、抜歯後感染、知覚異常、粘膜炎。LED/ダイオードとチップに応じたカスタム計算。',meta:'LED · ダイオード · LLLT · PDT'},
+    {m:'academy',num:'06 · ACADEMY',label:'アカデミー',name:'レーザーを操作するだけでなく理解する',desc:'インタラクティブカード付きの臨床ビデオレッスン。文献と実際のチェアサイドの経験に基づき、一度に一つの概念を扱います。',meta:'英語のみ · 別サブスクリプション'}
   ],
   demoEye:'ライブデモ',
   demoH:'実際の相談。',
@@ -1336,7 +1386,8 @@ ko:{
     {m:'protocols',num:'02 · PROTOCOLS',label:'프로토콜',name:'단계별 파라미터',desc:'케이스를 일반 언어로 설명하면 구조화된 프로토콜을 반환.',meta:'엔도 · 페리오 · 임플란트 · 외과'},
     {m:'validate',num:'03 · VALIDATE',label:'검증',name:'지금 하려는 게 안전한가?',desc:'레이저 화면 사진을 올리면 발사 전 파라미터·선량·금기사항을 문헌에 대조해 점검합니다.',meta:'발사 전 검증'},
     {m:'calculator',num:'04 · CALCULATOR',label:'계산기',name:'플루언스, 에너지, 시간',desc:'기기, 스팟 크기, 적응증에 맞춘 에너지 밀도.',meta:'J/cm² · J/점 · ms'},
-    {m:'pbm',num:'05 · PBM',label:'PBM',name:'임상 광생체조절',desc:'적응증별 정확한 용량 — 헤르페스, 발치와염, 감각이상, 점막염. LED/다이오드 및 팁에 따른 맞춤 계산.',meta:'LED · 다이오드 · LLLT · PDT'}
+    {m:'pbm',num:'05 · PBM',label:'PBM',name:'임상 광생체조절',desc:'적응증별 정확한 용량 — 헤르페스, 발치와염, 감각이상, 점막염. LED/다이오드 및 팁에 따른 맞춤 계산.',meta:'LED · 다이오드 · LLLT · PDT'},
+    {m:'academy',num:'06 · ACADEMY',label:'아카데미',name:'레이저를 조작하는 것을 넘어 이해하기',desc:'인터랙티브 카드가 포함된 임상 영상 레슨. 문헌과 실제 진료 경험을 바탕으로 한 번에 하나의 개념을 다룹니다.',meta:'영어 전용 · 별도 구독'}
   ],
   demoEye:'라이브 데모',
   demoH:'실제 상담.',
@@ -1504,12 +1555,15 @@ function render(){
   document.getElementById('footCopy').textContent=t.footCopy;
 
   var mods=t.mods.map(function(m){
-    return '<div class="mod" data-m="'+m.m+'">'
+    var isAcad = (m.m==='academy');
+    var tg     = isAcad ? 'a' : 'div';
+    var at     = isAcad ? ' href="#academy"' : '';
+    return '<'+tg+' class="mod" data-m="'+m.m+'"'+at+'>'
       + '<div class="mod-num"><span>'+m.num+'</span><span class="label">'+m.label+'</span></div>'
       + '<div class="mod-name">'+m.name+'</div>'
       + '<div class="mod-desc">'+m.desc+'</div>'
       + '<div class="mod-meta">'+m.meta+'</div>'
-      + '</div>';
+      + '</'+tg+'>';
   }).join('');
 
   var ros=t.ro.map(function(s){
